@@ -195,6 +195,7 @@ tr.data-row:hover td { background: #f0f7ff; }
     <span class="header-date">数据截止：2026年4月</span>
     <button class="btn btn-success" onclick="clearAllEdits()" style="background:rgba(255,100,100,0.2);border-color:rgba(255,150,150,0.5);" title="重置所有手动编辑，恢复原始数据">↺ 重置编辑</button>
     <button class="btn btn-success" onclick="exportExcel()">📥 导出 Excel</button>
+    <button class="btn btn-success" onclick="exportUpdatedHTML()" style="background:#065f46;color:#fff;">📤 导出更新版</button>
     <button class="btn btn-primary" onclick="openAddModal()">＋ 新增项目</button>
   </div>
 </div>
@@ -364,6 +365,7 @@ tr.data-row:hover td { background: #f0f7ff; }
 
 <script>
 // ==================== DATA ====================
+// PROJECTS_DATA_START — 导出更新版时替换此区间
 let projects = [
   {
     "seq": 1,
@@ -1377,6 +1379,7 @@ let projects = [
     "resettlement_repaid": 0
   }
 ];
+// PROJECTS_DATA_END — 导出更新版时替换到此为止
 
 const AREAS = ['鼓楼区','晋安区','台江区','仓山区'];
 const AREA_COLORS = {'鼓楼区':'#4F46E5','晋安区':'#0EA5E9','台江区':'#8B5CF6','仓山区':'#10B981'};
@@ -2267,6 +2270,46 @@ function confirmAdd() {
   renderTable();
   refreshKPI();
   refreshCharts();
+}
+
+// ===== EXPORT UPDATED HTML =====
+function exportUpdatedHTML() {
+  // 1. 构建当前数据的 JS 字符串（JSON 格式，兼容 JS 语法）
+  const dataStr = JSON.stringify(projects, null, 2);
+  const replBlock = 'let projects = ' + dataStr + ';';
+
+  // 2. 获取当前页面源码
+  fetch(location.href)
+    .then(r => {
+      if (!r.ok) throw new Error('无法加载页面源码，请确保通过 http:// 访问（非 file://）');
+      return r.text();
+    })
+    .then(html => {
+      // 3. 在标记之间替换
+      const START = '// PROJECTS_DATA_START — 导出更新版时替换此区间';
+      const END = '// PROJECTS_DATA_END — 导出更新版时替换到此为止';
+      const si = html.indexOf(START);
+      const ei = html.indexOf(END);
+      if (si === -1 || ei === -1) throw new Error('找不到数据标记，请联系开发者');
+
+      // 从 START 行末尾到 END 行开头 全部替换
+      const before = html.substring(0, html.indexOf('\n', si) + 1);
+      const after = html.substring(html.lastIndexOf('\n', ei) + 1);
+      const newHtml = before + replBlock + '\n' + after;
+
+      // 4. 触发下载
+      const blob = new Blob([newHtml], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'asset_list.html';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
+
+      alert('✅ 已导出更新版 asset_list.html\n请替换原文件，然后 git commit 即可同步到 GitHub');
+    })
+    .catch(err => alert('❌ 导出失败：' + err.message));
 }
 
 // ===== EXPORT EXCEL =====
