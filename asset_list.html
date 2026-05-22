@@ -365,7 +365,7 @@ tr.data-row:hover td { background: #f0f7ff; }
 
 <script>
 // ==================== DATA ====================
-// PROJECTS_DATA_START — 导出更新版时替换此区间
+// __PROJECTS_DATA_START__
 let projects = [
   {
     "seq": 1,
@@ -1379,7 +1379,7 @@ let projects = [
     "resettlement_repaid": 0
   }
 ];
-// PROJECTS_DATA_END — 导出更新版时替换到此为止
+// __PROJECTS_DATA_END__
 
 const AREAS = ['鼓楼区','晋安区','台江区','仓山区'];
 const AREA_COLORS = {'鼓楼区':'#4F46E5','晋安区':'#0EA5E9','台江区':'#8B5CF6','仓山区':'#10B981'};
@@ -2285,17 +2285,15 @@ function exportUpdatedHTML() {
       return r.text();
     })
     .then(html => {
-      // 3. 在标记之间替换
-      const START = '// PROJECTS_DATA_START — 导出更新版时替换此区间';
-      const END = '// PROJECTS_DATA_END — 导出更新版时替换到此为止';
+      // 3. 在标记之间替换（保留标记本身）
+      const START = '// __PROJECTS_DATA_START__';
+      const END = '// __PROJECTS_DATA_END__';
       const si = html.indexOf(START);
       const ei = html.indexOf(END);
       if (si === -1 || ei === -1) throw new Error('找不到数据标记，请联系开发者');
 
-      // 从 START 行末尾到 END 行开头 全部替换
-      const before = html.substring(0, html.indexOf('\n', si) + 1);
-      const after = html.substring(html.lastIndexOf('\n', ei) + 1);
-      const newHtml = before + replBlock + '\n' + after;
+      // 简单替换：保留START标记，中间换成新数据，再拼上END之后的内容
+      const newHtml = html.substring(0, si + START.length) + '\n' + replBlock + '\n' + html.substring(ei);
 
       // 4. 触发下载
       const blob = new Blob([newHtml], { type: 'text/html' });
