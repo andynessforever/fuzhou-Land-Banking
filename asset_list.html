@@ -2313,44 +2313,42 @@ function exportUpdatedHTML() {
 // ===== EXPORT EXCEL =====
 function exportExcel() {
   const wb = XLSX.utils.book_new();
+  const header = ['序号','项目名称','区域','类型','状态','获取时间','竣工时间','地价(万)','楼面价(元/㎡)','占地面积(㎡)','建设面积(㎡)','总投资(万)','货值(万)','分类可售货值(万)','货地比','已售货值(万)','未售货值(万)','安置房已回款','安置房未回款'];
+  const allRows = [];
+  // 按区域依次写入所有项目
   AREAS.forEach(area => {
     const rows = projects.filter(p => p.area === area);
-    const header = ['序号','项目名称','类型','状态','获取时间','竣工时间','地价(万)','楼面价(元/㎡)','占地面积(㎡)','建设面积(㎡)','总投资(万)','货值(万)','分类可售货值(万)','货地比','已售货值(万)','未售货值(万)','安置房已回款','安置房未回款'];
-    const data = rows.map(p => {
+    rows.forEach(p => {
       const unsold = getUnsold(p);
       const ratio = getRatio(p);
-      return [p.seq, p.name, p.type||'', p.status||'', p.acquire_date||'', p.completion_date||'',
+      allRows.push([p.seq, p.name, p.area, p.type||'', p.status||'', p.acquire_date||'', p.completion_date||'',
         p.land_price||'', p.floor_price||'', p.land_area||'', p.build_area||'',
         p.investment||'', p.value||'', p.saleable_value!=null?p.saleable_value:'',
         ratio?ratio.toFixed(2):'', p.sold_value!=null?p.sold_value:'', unsold!=null?unsold:'',
-        p.resettlement_repaid!=null?p.resettlement_repaid:'', p.resettlement_unsold!=null?p.resettlement_unsold:''];
+        p.resettlement_repaid!=null?p.resettlement_repaid:'', p.resettlement_unsold!=null?p.resettlement_unsold:'']);
     });
+    // 区域小计行
     const sum = getAreaSummary(area);
     const unsoldSum = rows.reduce((a,p)=>a+(getUnsold(p)||0),0);
     const saleableSum = rows.reduce((a,p)=>a+(p.saleable_value||0),0);
-    data.push([`${area}小计`, '', '', '', '', '',
-      sum.land_price||'', '', '', sum.build_area||'',
+    allRows.push([`${area}小计`, '', '', '', '', '', '',
+      sum.land_price||'', '', sum.land_area||'', sum.build_area||'',
       sum.investment||'', sum.value||'', saleableSum||'',
       sum.land_price?(sum.value/sum.land_price).toFixed(2):'', sum.sold_value||'', unsoldSum||'',
       sum.resettlement_repaid||'', sum.resettlement_unsold||'']);
-    const ws = XLSX.utils.aoa_to_sheet([header, ...data]);
-    ws['!cols'] = [7,22,12,8,12,12,10,12,12,12,12,12,12,8,12,12,12,12].map(w=>({wch:w}));
-    XLSX.utils.book_append_sheet(wb, ws, area);
   });
-  const sumHeader = ['区域','项目数','总地价(万)','总货值(万)','分类可售货值(万)','货地比','总建面(㎡)','已售货值(万)','未售货值(万)','安置房已回款','安置房未回款'];
-  const sumData = AREAS.map(area => {
-    const s = getAreaSummary(area);
-    const rows = projects.filter(p=>p.area===area);
-    const unsoldSum = rows.reduce((a,p)=>a+(getUnsold(p)||0),0);
-    const saleableSum = rows.reduce((a,p)=>a+(p.saleable_value||0),0);
-    return [area, s.count, s.land_price, s.value, saleableSum||'', s.land_price?(s.value/s.land_price).toFixed(2):'', s.build_area, s.sold_value, unsoldSum, s.resettlement_repaid, s.resettlement_unsold];
-  });
+  // 全市合计行
   const t = getTotal();
   const totalUnsold = projects.reduce((a,p)=>a+(getUnsold(p)||0),0);
   const totalSaleable = projects.reduce((a,p)=>a+(p.saleable_value||0),0);
-  sumData.push(['全市合计', t.count, t.land_price, t.value, totalSaleable||'', t.land_price?(t.value/t.land_price).toFixed(2):'', t.build_area, t.sold_value, totalUnsold, t.resettlement_repaid, t.resettlement_unsold]);
-  const wsSummary = XLSX.utils.aoa_to_sheet([sumHeader, ...sumData]);
-  XLSX.utils.book_append_sheet(wb, wsSummary, '汇总');
+  allRows.push(['全市合计', '', '', '', '', '', '',
+    t.land_price||'', '', t.land_area||'', t.build_area||'',
+    t.investment||'', t.value||'', totalSaleable||'',
+    t.land_price?(t.value/t.land_price).toFixed(2):'', t.sold_value||'', totalUnsold||'',
+    t.resettlement_repaid||'', t.resettlement_unsold||'']);
+  const ws = XLSX.utils.aoa_to_sheet([header, ...allRows]);
+  ws['!cols'] = [7,24,8,8,8,12,12,10,12,12,12,12,12,12,8,12,12,12,12].map(w=>({wch:w}));
+  XLSX.utils.book_append_sheet(wb, ws, '资产清单');
   XLSX.writeFile(wb, `左海置地资产清单_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 
