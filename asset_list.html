@@ -304,7 +304,7 @@ tr.data-row:hover td { background: #f0f7ff; }
     </div>
   </div>
   <label>搜索</label>
-  <input type="text" id="filterSearch" placeholder="项目名称关键词..." oninput="applyFilter()" style="width:180px">
+  <input type="text" id="filterSearch" placeholder="项目名称/拿地主体..." oninput="applyFilter()" style="width:200px">
   <button class="btn-sm btn-reset" onclick="resetFilter()">重置</button>
   <div class="filter-count">显示 <strong id="showCount">0</strong> / <strong id="totalCount">0</strong> 个项目</div>
 </div>
@@ -2195,7 +2195,7 @@ function getFiltered() {
         if (!msSelected.compl.has('__none__')) return false;
       }
     }
-    if (search && !p.name.toLowerCase().includes(search.toLowerCase())) return false;
+    if (search && !p.name.toLowerCase().includes(search.toLowerCase()) && !(p.entity||'').toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
 }
