@@ -344,6 +344,9 @@ tr.data-row:hover td { background: #f0f7ff; }
         <div class="form-group"><label>已售货值（万元）</label><input id="f_sold_value" type="number" placeholder="0" oninput="calcUnsold()"></div>
         <div class="form-group"><label>未售货值（自动计算）</label><input id="f_unsold_value" type="number" placeholder="自动" readonly style="background:#f9fafb"></div>
         <div class="form-group"><label>开盘/预售信息</label><input id="f_sale_date" type="text" placeholder="如：预售证2024年3月"></div>
+        <div class="form-group full"><label>项目位置</label><input id="f_location" type="text" placeholder="如：晋安区福马路南侧"></div>
+        <div class="form-group full"><label>拿地主体</label><input id="f_entity" type="text" placeholder="如：福州市园开安筑建设有限公司"></div>
+        <div class="form-group"><label>主力面积段</label><input id="f_area_segment" type="text" placeholder="如：89-135㎡ 或 待定"></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -1482,6 +1485,40 @@ let projects = [
       "location": "仓山区环岛路与螺洲路交叉口西北侧出让地块",
     "area_segment": "待定",
     "entity": "福州市园开安筑建设有限公司",
+},
+  {
+    "seq": 34,
+    "area": "晋安区",
+    "name": "生物工程学院",
+    "type": "地产开发",
+    "acquire_date": null,
+    "land_date": null,
+    "completion_date": null,
+    "sale_date": null,
+    "land_price": null,
+    "floor_price": null,
+    "land_area": null,
+    "far": null,
+    "total_area": null,
+    "build_area": null,
+    "resettlement_units": null,
+    "resettlement_area": null,
+    "commercial_units": null,
+    "commercial_area": null,
+    "investment": null,
+    "value": null,
+    "status": "未交地",
+    "avg_price": null,
+    "saleable_value": null,
+    "sold_value": null,
+    "dev_loan": null,
+    "resettlement_sold": null,
+    "resettlement_value": null,
+    "resettlement_unsold": null,
+    "resettlement_repaid": null,
+    "location": "晋安区新店镇汤斜村、绕城高速公路以南",
+    "area_segment": "待定",
+    "entity": "福州市园开安筑建设有限公司"
 }
 ];
 // __PROJECTS_DATA_END__
@@ -2377,11 +2414,14 @@ function confirmAdd() {
     total_area: null,
     resettlement_units: null, resettlement_area: null,
     commercial_units: null, commercial_area: null,
+    location: document.getElementById('f_location').value.trim() || null,
+    entity: document.getElementById('f_entity').value.trim() || null,
+    area_segment: document.getElementById('f_area_segment').value.trim() || null,
   };
   projects.push(newProj);
   closeModal('addModal');
   // reset form
-  ['f_name','f_acquire','f_completion','f_sale_date','f_land_price','f_floor_price','f_land_area','f_far','f_build_area','f_investment','f_value','f_saleable_value','f_sold_value','f_unsold_value'].forEach(id => document.getElementById(id).value = '');
+  ['f_name','f_acquire','f_completion','f_sale_date','f_land_price','f_floor_price','f_land_area','f_far','f_build_area','f_investment','f_value','f_saleable_value','f_sold_value','f_unsold_value','f_location','f_entity','f_area_segment'].forEach(id => document.getElementById(id).value = '');
   renderTable();
   refreshKPI();
   refreshCharts();
