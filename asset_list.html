@@ -279,12 +279,12 @@ tr.data-row:hover td { background: #f0f7ff; }
     <div class="ms-trigger" id="ms-status-trigger" onclick="toggleMs('status')">全部</div>
     <div class="ms-dropdown" id="ms-status-dropdown">
       <div class="ms-item ms-all" onclick="toggleMsAll('status')"><input type="checkbox" id="ms-status-all" checked> 全选/清空</div>
-      <div class="ms-item" onclick="toggleMsItem('status','在建')"><input type="checkbox" class="ms-status-cb" value="在建"> 在建</div>
-      <div class="ms-item" onclick="toggleMsItem('status','已交付')"><input type="checkbox" class="ms-status-cb" value="已交付"> 已交付</div>
-      <div class="ms-item" onclick="toggleMsItem('status','已售罄')"><input type="checkbox" class="ms-status-cb" value="已售罄"> 已售罄</div>
-      <div class="ms-item" onclick="toggleMsItem('status','未交地')"><input type="checkbox" class="ms-status-cb" value="未交地"> 未交地</div>
-      <div class="ms-item" onclick="toggleMsItem('status','暂缓开工')"><input type="checkbox" class="ms-status-cb" value="暂缓开工"> 暂缓开工</div>
       <div class="ms-item" onclick="toggleMsItem('status','待开工')"><input type="checkbox" class="ms-status-cb" value="待开工"> 待开工</div>
+      <div class="ms-item" onclick="toggleMsItem('status','在建未售')"><input type="checkbox" class="ms-status-cb" value="在建未售"> 在建未售</div>
+      <div class="ms-item" onclick="toggleMsItem('status','在建已售')"><input type="checkbox" class="ms-status-cb" value="在建已售"> 在建已售</div>
+      <div class="ms-item" onclick="toggleMsItem('status','已竣备')"><input type="checkbox" class="ms-status-cb" value="已竣备"> 已竣备</div>
+      <div class="ms-item" onclick="toggleMsItem('status','已交付')"><input type="checkbox" class="ms-status-cb" value="已交付"> 已交付</div>
+      <div class="ms-item" onclick="toggleMsItem('status','暂缓开工')"><input type="checkbox" class="ms-status-cb" value="暂缓开工"> 暂缓开工</div>
       <div class="ms-item" onclick="toggleMsItem('status','已退地')"><input type="checkbox" class="ms-status-cb" value="已退地"> 已退地</div>
       <div class="ms-item" onclick="toggleMsItem('status','')"><input type="checkbox" class="ms-status-cb" value=""> 未标注</div>
     </div>
@@ -331,7 +331,7 @@ tr.data-row:hover td { background: #f0f7ff; }
         <div class="form-group"><label>获取时间</label><input id="f_acquire" type="date"></div>
         <div class="form-group"><label>竣工时间</label><input id="f_completion" type="date"></div>
         <div class="form-group"><label>项目状态</label>
-          <select id="f_status"><option value="">—</option><option>在建</option><option>已交付</option><option>已售罄</option><option>未交地</option><option>暂缓开工</option><option>待开工</option><option>已退地</option></select>
+          <select id="f_status"><option value="">—</option><option>待开工</option><option>在建未售</option><option>在建已售</option><option>已竣备</option><option>已交付</option><option>暂缓开工</option><option>已退地</option></select>
         </div>
         <div class="form-group"><label>地价（万元）</label><input id="f_land_price" type="number" placeholder="0"></div>
         <div class="form-group"><label>楼面价（元/㎡）</label><input id="f_floor_price" type="number" placeholder="0"></div>
@@ -1527,7 +1527,7 @@ let projects = [
 const AREAS = ['鼓楼区','晋安区','台江区','仓山区'];
 const AREA_COLORS = {'鼓楼区':'#4F46E5','晋安区':'#0EA5E9','台江区':'#8B5CF6','仓山区':'#10B981'};
 const TYPE_LIST = ['','地产开发','公建项目','公建+市场化运营','长租公寓'];
-const STATUS_LIST = ['','在建','已交付','已售罄','未交地','暂缓开工','待开工','已退地'];
+const STATUS_LIST = ['','待开工','在建未售','在建已售','已竣备','已交付','暂缓开工','已退地'];
 
 // ===== LOCALSTORAGE 持久化 =====
 const LS_KEY = 'asset_list_edits_v1';
