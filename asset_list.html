@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="AR85k7ZAQOlwGShuMtcHuf">
+<head data-page-node-id="68rUdAOxqQRl6hRvL3S9u9">
+<meta charset="UTF-8" data-page-node-id="VHEQcKV3EtMzVRpOoXXVq7">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" data-page-node-id="ANF1kPeOCPHRoOsU1f2BnD">
+<meta http-equiv="Pragma" content="no-cache" data-page-node-id="zEGISJyBYUuI3bhteDlKPg">
+<meta http-equiv="Expires" content="0" data-page-node-id="XTUSkC4T6wbJpIWdzNAODB">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="uIRk0g5PfXFS1mFujOku62">
 <title>左海置地资产清单</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -76,6 +76,20 @@ body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f
 
 /* ===== TABLE ===== */
 .table-section { padding: 14px 32px 32px; }
+.col-group-head { cursor: pointer; user-select: none; transition: background .15s; }
+.col-group-head:hover { background: #e8eefc !important; }
+.col-group-head.cg-hidden { color: #9ca3af; }
+.cg-hidden { display: none !important; }
+
+/* ===== COLUMN TOGGLE BAR ===== */
+.col-toggle-bar { margin: 0 32px; padding: 10px 16px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.col-toggle-bar .ct-label { font-size: 12px; color: #6b7280; white-space: nowrap; }
+.col-toggle-btn { border: 1px solid #e5e7eb; border-radius: 18px; padding: 4px 14px; font-size: 12px; cursor: pointer; font-family: inherit; background: #fff; color: #6b7280; transition: all .15s; display: inline-flex; align-items: center; gap: 5px; }
+.col-toggle-btn:hover { border-color: #1d4ed8; }
+.col-toggle-btn.active { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+.col-toggle-btn .dot { width: 7px; height: 7px; border-radius: 50%; background: #cbd5e1; }
+.col-toggle-btn.active .dot { background: #fff; }
+
 .area-group { margin-bottom: 18px; }
 .area-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; user-select: none; }
 .area-tag { background: linear-gradient(135deg, #1d4ed8, #0891b2); color: #fff; font-size: 12px; font-weight: 600; padding: 3px 12px; border-radius: 20px; }
@@ -102,11 +116,12 @@ tr.data-row:hover td { background: #f0f7ff; }
 
 /* badges */
 .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; white-space: nowrap; }
-.badge-built{background:#dbeafe;color:#1d4ed8} .badge-done{background:#d1fae5;color:#059669}
+.badge-built{background:#dbeafe;color:#1d4ed8} .badge-building-sold{background:#d1fae5;color:#0e7490} .badge-done{background:#d1fae5;color:#059669}
 .badge-notgiven{background:#fee2e2;color:#dc2626} .badge-other{background:#f3f4f6;color:#6b7280}
 .badge-public{background:#ede9fe;color:#7c3aed} .badge-sold{background:#d1fae5;color:#065f46}
 .badge-pause{background:#fef3c7;color:#92400e} .badge-pending{background:#e0f2fe;color:#0369a1}
 .badge-returned{background:#f3f4f6;color:#374151;text-decoration:line-through}
+.badge-start{background:#ffedd5;color:#c2410c}
 .type-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; white-space: nowrap; }
 .type-dev{background:#dbeafe;color:#1e40af} .type-public{background:#ede9fe;color:#6d28d9}
 .type-mixed{background:#fce7f3;color:#9d174d} .type-rental{background:#fef3c7;color:#92400e}
@@ -180,190 +195,197 @@ tr.data-row:hover td { background: #f0f7ff; }
 }
 </style>
 </head>
-<body>
+<body data-page-node-id="AAG7Ws0t8ZRIBJc874C5HE">
 
 <!-- Header -->
-<div class="header">
-  <div class="header-left">
-    <div class="header-logo">🏢</div>
-    <div class="header-title">
-      <h1>左海置地资产清单</h1>
-      <p>左海置地 · 运营管理部 · 资产盘点</p>
+<div class="header" data-page-node-id="dJTbFWm4zyal8wob6tpUu5">
+  <div class="header-left" data-page-node-id="BfRAnUVdg4ZE8Sb8wjALfr">
+    <div class="header-logo" data-page-node-id="ytkkaFh03m0PU1AEmEnepO">🏢</div>
+    <div class="header-title" data-page-node-id="Zjiijnin9eD121pYhg7iSa">
+      <h1 data-page-node-id="na0aDc66i67LC04yE2nYTi">左海置地资产清单</h1>
+      <p data-page-node-id="TygHhcO0uzYBfwgZrXT3Tu">左海置地 · 运营管理部 · 资产盘点</p>
     </div>
   </div>
-  <div class="header-actions">
-    <span class="header-date">数据截止：2026年4月</span>
-    <button class="btn btn-success" onclick="clearAllEdits()" style="background:rgba(255,100,100,0.2);border-color:rgba(255,150,150,0.5);" title="重置所有手动编辑，恢复原始数据">↺ 重置编辑</button>
-    <button class="btn btn-success" onclick="exportExcel()">📥 导出 Excel</button>
-    <button class="btn btn-success" onclick="exportUpdatedHTML()" style="background:#065f46;color:#fff;">📤 导出更新版</button>
-    <button class="btn btn-primary" onclick="openAddModal()">＋ 新增项目</button>
+  <div class="header-actions" data-page-node-id="WJG8BvgeKXa0NeX6nAQFat">
+    <span class="header-date" data-page-node-id="hF0GekuPQ9ZpDoVnO7P2qz">数据截止：<span id="dataAsOf">2026-08-31</span></span>
+    <button class="btn btn-success" onclick="clearAllEdits()" style="background:rgba(255,100,100,0.2);border-color:rgba(255,150,150,0.5);" title="重置所有手动编辑，恢复原始数据" data-page-node-id="5807DiVYA6AXO61xivrcbc">↺ 重置编辑</button>
+    <button class="btn btn-success" onclick="exportExcel()" data-page-node-id="CY2PcJF0pQrdD29dp9t1Ky">📥 导出 Excel</button>
+    <button class="btn btn-success" onclick="exportUpdatedHTML()" style="background:#065f46;color:#fff;" data-page-node-id="Hcq6vKa5mnzcB6AglyKu0k">📤 导出更新版</button>
+    <button class="btn btn-primary" onclick="openAddModal()" data-page-node-id="Uq6sYnwNSSHIHaJLY91AbB">＋ 新增项目</button>
+    <button class="btn btn-success" onclick="archiveToServer(this)" style="background:#1e40af;color:#fff;" title="将当前所有编辑同步保存到源文件" data-page-node-id="7SsvZfiq1TyuYlDPOvS44N">💾 存档</button>
   </div>
 </div>
 
 <!-- KPI -->
-<div class="kpi-section">
-  <div class="kpi-card" onclick="scrollToTable()">
-    <div class="kpi-label">项目总数</div>
-    <div class="kpi-value" id="kpiTotal">—</div>
-    <div class="kpi-sub">覆盖4个行政区</div>
+<div class="kpi-section" data-page-node-id="aH5RV0ydl3XVO7iCvMHjpz">
+  <div class="kpi-card" onclick="scrollToTable()" data-page-node-id="JL9ZfVfHCiKVpXOoglbBlt">
+    <div class="kpi-label" data-page-node-id="Ftq9E2n5GBezfFQDsBWVNC">项目总数</div>
+    <div class="kpi-value" id="kpiTotal" data-page-node-id="nAf9IILFBo9GCe6pEWAwcJ">—</div>
+    <div class="kpi-sub" data-page-node-id="ilr7yPn3meFx9nDsmEkLI6">覆盖4个行政区</div>
   </div>
-  <div class="kpi-card" onclick="scrollToTable()">
-    <div class="kpi-label">总地价</div>
-    <div class="kpi-value" id="kpiLandPrice">—<span>亿元</span></div>
-    <div class="kpi-sub">全市合计</div>
+  <div class="kpi-card" onclick="scrollToTable()" data-page-node-id="4P3k6p56PfEUM15auj8rjm">
+    <div class="kpi-label" data-page-node-id="0P0kRVCysBQD3NMSQB2nVR">总地价</div>
+    <div class="kpi-value" id="kpiLandPrice" data-page-node-id="6v21gDh8dqLMwzbJOZroxT">—<span data-page-node-id="pwRTDQu0Z3PXEpaTlaGIrB">亿元</span></div>
+    <div class="kpi-sub" data-page-node-id="FsnV79BC5u8KI92xQ50DR2">全市合计</div>
   </div>
-  <div class="kpi-card" onclick="scrollToTable()">
-    <div class="kpi-label">总货值</div>
-    <div class="kpi-value" id="kpiValue">—<span>亿元</span></div>
-    <div class="kpi-sub">预估总货值</div>
+  <div class="kpi-card" onclick="scrollToTable()" data-page-node-id="8jRpDeebRnypr19OUMxhJ2">
+    <div class="kpi-label" data-page-node-id="BFUkJG9pjv2r1oFsRUUNS8">总货值</div>
+    <div class="kpi-value" id="kpiValue" data-page-node-id="JcOSsxEh6enzghiG78Ylyg">—<span data-page-node-id="gLbY8exjIfmLC3jOjrlhl1">亿元</span></div>
+    <div class="kpi-sub" data-page-node-id="AsM36McMczWFNW0juxGGjl">预估总货值</div>
   </div>
-  <div class="kpi-card" onclick="scrollToTable()">
-    <div class="kpi-label">总建设面积</div>
-    <div class="kpi-value" id="kpiBuild">—<span>万㎡</span></div>
-    <div class="kpi-sub">全部项目合计</div>
+  <div class="kpi-card" onclick="scrollToTable()" data-page-node-id="CiaDUlck82vlPVSaNxRsbz">
+    <div class="kpi-label" data-page-node-id="5zUw8yt9Qu3hAcKlhzdSJt">总建设面积</div>
+    <div class="kpi-value" id="kpiBuild" data-page-node-id="1p0idqzKR0A8sYgvLbATZg">—<span data-page-node-id="ZRYtBGyauyadfcCRi66iUs">万㎡</span></div>
+    <div class="kpi-sub" data-page-node-id="sFAXHTvl0zy06mPkErNlab">全部项目合计</div>
   </div>
-  <div class="kpi-card" onclick="scrollToTable()">
-    <div class="kpi-label">总投资额</div>
-    <div class="kpi-value" id="kpiInvest">—<span>亿元</span></div>
-    <div class="kpi-sub">备案表口径</div>
+  <div class="kpi-card" onclick="scrollToTable()" data-page-node-id="NYQmJPWrhvWmTgVpjEkfwP">
+    <div class="kpi-label" data-page-node-id="S2lOEZUjIzmwlXzktNV8Tj">总投资额</div>
+    <div class="kpi-value" id="kpiInvest" data-page-node-id="KnHRBP769ETwgqEqa0GEsJ">—<span data-page-node-id="h616mKmyFTbhBbFayJRaq6">亿元</span></div>
+    <div class="kpi-sub" data-page-node-id="iSH7AEkkXUGKci4mD723PH">备案表口径</div>
   </div>
-  <div class="kpi-card" onclick="scrollToTable()">
-    <div class="kpi-label">在建项目</div>
-    <div class="kpi-value" id="kpiBuilding">—<span>个</span></div>
-    <div class="kpi-sub" id="kpiDoneText">—</div>
+  <div class="kpi-card" onclick="scrollToTable()" data-page-node-id="F9fcq3Djv713VjXJf4b2lU">
+    <div class="kpi-label" data-page-node-id="t5waAeGo03rfh4hmkvt0Zl">在建项目</div>
+    <div class="kpi-value" id="kpiBuilding" data-page-node-id="k89Bsr71Pq1HX1aRXxDD5A">—<span data-page-node-id="fN3vjG2QceFZ0xej0JPWUJ">个</span></div>
+    <div class="kpi-sub" id="kpiDoneText" data-page-node-id="ZitgyDMokwEUYrCesotwRN">—</div>
   </div>
 </div>
 
 <!-- Charts -->
-<div class="charts-section">
-  <div class="chart-card">
-    <h3>📊 各区全周期未售货值分布（点击查看明细）</h3>
-    <div class="chart-box" id="chartValue"></div>
+<div class="charts-section" data-page-node-id="2ew6RvUUxrLMe8qecFcgaq">
+  <div class="chart-card" data-page-node-id="f4lEn2acrqGApacPeYzCTB">
+    <h3 data-page-node-id="exvFuD8jf4WSbOegLbgXLB">📊 各区全周期未售货值分布（点击查看明细）</h3>
+    <div class="chart-box" id="chartValue" data-page-node-id="OZ8FW21EL7gSNEIJfcP1ib"></div>
   </div>
-  <div class="chart-card">
-    <h3>🏗️ 项目状态分布</h3>
-    <div class="chart-box" id="chartStatus"></div>
+  <div class="chart-card" data-page-node-id="ATXntiaMG3QiD5m3QurOik">
+    <h3 data-page-node-id="0IjMAcgOesoPco1LsrC9uv">🏗️ 项目状态分布</h3>
+    <div class="chart-box" id="chartStatus" data-page-node-id="Ec4NFtAMfujc5G9IWd2k57"></div>
   </div>
-  <div class="chart-card">
-    <h3>📐 各区建设规模（万㎡，仅在建）</h3>
-    <div class="chart-box" id="chartArea"></div>
+  <div class="chart-card" data-page-node-id="EI7fLbfm6CAbjCDQef7ap0">
+    <h3 data-page-node-id="X86xK6I2gGBnosCsJbjYvN">📐 各区建设规模（万㎡，在建未售+在建已售）</h3>
+    <div class="chart-box" id="chartArea" data-page-node-id="a11W0Htz9cD7QTYJYTFVPx"></div>
   </div>
 </div>
 
 <!-- Filter -->
-<div class="filter-bar">
-  <label>所属区域</label>
-  <div class="ms-wrap" id="ms-area">
-    <div class="ms-trigger" id="ms-area-trigger" onclick="toggleMs('area')">全部</div>
-    <div class="ms-dropdown" id="ms-area-dropdown">
-      <div class="ms-item ms-all" onclick="toggleMsAll('area')"><input type="checkbox" id="ms-area-all" checked> 全选/清空</div>
-      <div class="ms-item" onclick="toggleMsItem('area','鼓楼区')"><input type="checkbox" class="ms-area-cb" value="鼓楼区"> 鼓楼区</div>
-      <div class="ms-item" onclick="toggleMsItem('area','晋安区')"><input type="checkbox" class="ms-area-cb" value="晋安区"> 晋安区</div>
-      <div class="ms-item" onclick="toggleMsItem('area','台江区')"><input type="checkbox" class="ms-area-cb" value="台江区"> 台江区</div>
-      <div class="ms-item" onclick="toggleMsItem('area','仓山区')"><input type="checkbox" class="ms-area-cb" value="仓山区"> 仓山区</div>
+<div class="filter-bar" data-page-node-id="Neq8C2R2zAnNIqo4AHFFZj">
+  <label data-page-node-id="NoOQ2drxJHNybmRsyDwd7d">所属区域</label>
+  <div class="ms-wrap" id="ms-area" data-page-node-id="syNAoVkLcfWNkRC6J0VT5S">
+    <div class="ms-trigger" id="ms-area-trigger" onclick="toggleMs('area')" data-page-node-id="owl6o79zEhAzdCXRnni2EQ">全部</div>
+    <div class="ms-dropdown" id="ms-area-dropdown" data-page-node-id="O3GGAH2NJuRDPFFAe1CACQ">
+      <div class="ms-item ms-all" onclick="toggleMsAll('area')" data-page-node-id="uYNjnF5P2DffmK9xDaAVxA"><input type="checkbox" id="ms-area-all" checked data-page-node-id="r7k8WU8bBPEJ4hQmRagF3E"> 全选/清空</div>
+      <div class="ms-item" onclick="toggleMsItem('area','鼓楼区')" data-page-node-id="DAWIwJA4VvsSiQKqZWmPKr"><input type="checkbox" class="ms-area-cb" value="鼓楼区" data-page-node-id="6NC7RXsciHWY4C9kn4iT7u"> 鼓楼区</div>
+      <div class="ms-item" onclick="toggleMsItem('area','晋安区')" data-page-node-id="zJaMGwmIwVsFGzDH6QetyM"><input type="checkbox" class="ms-area-cb" value="晋安区" data-page-node-id="VRlLhANKDJc9URDP1OteM2"> 晋安区</div>
+      <div class="ms-item" onclick="toggleMsItem('area','台江区')" data-page-node-id="xHuMhgaZJ91O3QEEIuFCeZ"><input type="checkbox" class="ms-area-cb" value="台江区" data-page-node-id="H1BDkVPfHGlkwNpoSiILbi"> 台江区</div>
+      <div class="ms-item" onclick="toggleMsItem('area','仓山区')" data-page-node-id="DeaC0slfnIgduDiumWS2sU"><input type="checkbox" class="ms-area-cb" value="仓山区" data-page-node-id="OQmNdN0adHIiSwuBeXQG4D"> 仓山区</div>
     </div>
   </div>
-  <label>项目类型</label>
-  <div class="ms-wrap" id="ms-type">
-    <div class="ms-trigger" id="ms-type-trigger" onclick="toggleMs('type')">全部</div>
-    <div class="ms-dropdown" id="ms-type-dropdown">
-      <div class="ms-item ms-all" onclick="toggleMsAll('type')"><input type="checkbox" id="ms-type-all" checked> 全选/清空</div>
-      <div class="ms-item" onclick="toggleMsItem('type','地产开发')"><input type="checkbox" class="ms-type-cb" value="地产开发"> 地产开发</div>
-      <div class="ms-item" onclick="toggleMsItem('type','公建项目')"><input type="checkbox" class="ms-type-cb" value="公建项目"> 公建项目</div>
-      <div class="ms-item" onclick="toggleMsItem('type','公建+市场化运营')"><input type="checkbox" class="ms-type-cb" value="公建+市场化运营"> 公建+市场化运营</div>
-      <div class="ms-item" onclick="toggleMsItem('type','长租公寓')"><input type="checkbox" class="ms-type-cb" value="长租公寓"> 长租公寓</div>
+  <label data-page-node-id="7X6vtGS4TQvbIZ4EXCjdFY">项目类型</label>
+  <div class="ms-wrap" id="ms-type" data-page-node-id="A8monfSjUexKkH6mwSmRlV">
+    <div class="ms-trigger" id="ms-type-trigger" onclick="toggleMs('type')" data-page-node-id="Cc2r8uvKmWKZB7JWskR8hu">全部</div>
+    <div class="ms-dropdown" id="ms-type-dropdown" data-page-node-id="ZXMxY5RKQglmFTCg4DvmGb">
+      <div class="ms-item ms-all" onclick="toggleMsAll('type')" data-page-node-id="EBQHAIMc6DE5u30G87Ch2W"><input type="checkbox" id="ms-type-all" checked data-page-node-id="TWwT99ULmRoV66EQFdEoi8"> 全选/清空</div>
+      <div class="ms-item" onclick="toggleMsItem('type','地产开发')" data-page-node-id="cFdj9oNWcbHlJcPgGNDGwS"><input type="checkbox" class="ms-type-cb" value="地产开发" data-page-node-id="xraVBAiy3UGkCFkTh6uTjH"> 地产开发</div>
+      <div class="ms-item" onclick="toggleMsItem('type','公建项目')" data-page-node-id="Ae9zyUzshgxcOYIjgffgOG"><input type="checkbox" class="ms-type-cb" value="公建项目" data-page-node-id="DunHArdqzsaD8D2rCZS0UW"> 公建项目</div>
+      <div class="ms-item" onclick="toggleMsItem('type','公建+市场化运营')" data-page-node-id="incMmRNQCRHWCvld2PtZ79"><input type="checkbox" class="ms-type-cb" value="公建+市场化运营" data-page-node-id="QnPrrI0kH428jAtAoa0LiC"> 公建+市场化运营</div>
+      <div class="ms-item" onclick="toggleMsItem('type','长租公寓')" data-page-node-id="8tgp8n7ny2YXCfz3FQzwgE"><input type="checkbox" class="ms-type-cb" value="长租公寓" data-page-node-id="hOubfkdBXiomMgfxGUDD1n"> 长租公寓</div>
     </div>
   </div>
-  <label>项目状态</label>
-  <div class="ms-wrap" id="ms-status">
-    <div class="ms-trigger" id="ms-status-trigger" onclick="toggleMs('status')">全部</div>
-    <div class="ms-dropdown" id="ms-status-dropdown">
-      <div class="ms-item ms-all" onclick="toggleMsAll('status')"><input type="checkbox" id="ms-status-all" checked> 全选/清空</div>
-      <div class="ms-item" onclick="toggleMsItem('status','待开工')"><input type="checkbox" class="ms-status-cb" value="待开工"> 待开工</div>
-      <div class="ms-item" onclick="toggleMsItem('status','在建未售')"><input type="checkbox" class="ms-status-cb" value="在建未售"> 在建未售</div>
-      <div class="ms-item" onclick="toggleMsItem('status','在建已售')"><input type="checkbox" class="ms-status-cb" value="在建已售"> 在建已售</div>
-      <div class="ms-item" onclick="toggleMsItem('status','已竣备')"><input type="checkbox" class="ms-status-cb" value="已竣备"> 已竣备</div>
-      <div class="ms-item" onclick="toggleMsItem('status','已交付')"><input type="checkbox" class="ms-status-cb" value="已交付"> 已交付</div>
-      <div class="ms-item" onclick="toggleMsItem('status','暂缓开工')"><input type="checkbox" class="ms-status-cb" value="暂缓开工"> 暂缓开工</div>
-      <div class="ms-item" onclick="toggleMsItem('status','已退地')"><input type="checkbox" class="ms-status-cb" value="已退地"> 已退地</div>
-      <div class="ms-item" onclick="toggleMsItem('status','')"><input type="checkbox" class="ms-status-cb" value=""> 未标注</div>
+  <label data-page-node-id="HqdSZKCwlcPx74IcYCL1v6">项目状态</label>
+  <div class="ms-wrap" id="ms-status" data-page-node-id="H7NBmqLX35BTxH2VKVEEeF">
+    <div class="ms-trigger" id="ms-status-trigger" onclick="toggleMs('status')" data-page-node-id="PxvratESYsWYRbNDir8phe">全部</div>
+    <div class="ms-dropdown" id="ms-status-dropdown" data-page-node-id="rimUVTInW0LIDjORkMbZ6d">
+      <div class="ms-item ms-all" onclick="toggleMsAll('status')" data-page-node-id="Lf4ff1GkTdotXyROSPsPDu"><input type="checkbox" id="ms-status-all" checked data-page-node-id="yKgvHRd2K5hhmFFsbQtB6Q"> 全选/清空</div>
+      <div class="ms-item" onclick="toggleMsItem('status','待开工')" data-page-node-id="lCFYwA9m7KezuD2d8sO8TB"><input type="checkbox" class="ms-status-cb" value="待开工" data-page-node-id="IsbXJpbIKxPuzqrJjgmtcQ"> 待开工</div>
+      
+      <div class="ms-item" onclick="toggleMsItem('status','在建未售')" data-page-node-id="mHRmgaEWLQgZIwohNowh9j"><input type="checkbox" class="ms-status-cb" value="在建未售" data-page-node-id="SgFr2lRTRdlvEOoGJ5wWCV"> 在建未售</div>
+      <div class="ms-item" onclick="toggleMsItem('status','在建已售')" data-page-node-id="4uQJt72lmPrHMEd1hjmsAc"><input type="checkbox" class="ms-status-cb" value="在建已售" data-page-node-id="Qv9Tdd7HzFuRV4Tg11KduA"> 在建已售</div>
+      <div class="ms-item" onclick="toggleMsItem('status','已竣备')" data-page-node-id="0EfZxnuw4PpaEkygFbIF9B"><input type="checkbox" class="ms-status-cb" value="已竣备" data-page-node-id="xXgWJ0hP4TpuDI4VhSnCCZ"> 已竣备</div>
+      <div class="ms-item" onclick="toggleMsItem('status','已交付')" data-page-node-id="ravIRHswBDaHzPdC3kGJvM"><input type="checkbox" class="ms-status-cb" value="已交付" data-page-node-id="Pwfnw9gs4Tf70sTukyhxLR"> 已交付</div>
+      <div class="ms-item" onclick="toggleMsItem('status','暂缓开工')" data-page-node-id="6HVDdjtSIekFhr1eRwaDe1"><input type="checkbox" class="ms-status-cb" value="暂缓开工" data-page-node-id="BjwuowrlXvVtzJUbAl6JpH"> 暂缓开工</div>
+      <div class="ms-item" onclick="toggleMsItem('status','已退地')" data-page-node-id="SGxrUTLK3ZAsSakZwg2VTp"><input type="checkbox" class="ms-status-cb" value="已退地" data-page-node-id="L3fstUicLKOfzkHmRotrQ8"> 已退地</div>
+      <div class="ms-item" onclick="toggleMsItem('status','')" data-page-node-id="sfFST6ssiEGyy6gc1T5CDF"><input type="checkbox" class="ms-status-cb" value="" data-page-node-id="7t7NigEvwduWEHBIUXPFPW"> 未标注</div>
     </div>
   </div>
-  <label>获取年份</label>
-  <div class="ms-wrap" id="ms-year">
-    <div class="ms-trigger" id="ms-year-trigger" onclick="toggleMs('year')">全部</div>
-    <div class="ms-dropdown" id="ms-year-dropdown">
-      <div class="ms-item ms-all" onclick="toggleMsAll('year')"><input type="checkbox" id="ms-year-all" checked> 全选/清空</div>
+  <label data-page-node-id="wZ6ScNIuupJzdeDNAeIdwd">获取年份</label>
+  <div class="ms-wrap" id="ms-year" data-page-node-id="HcPERh9YQbDBzIH3atCikk">
+    <div class="ms-trigger" id="ms-year-trigger" onclick="toggleMs('year')" data-page-node-id="MxF05Lm6qyZqJHDO50BvVr">全部</div>
+    <div class="ms-dropdown" id="ms-year-dropdown" data-page-node-id="qq6z4uwkOHEVraghzWNcfQ">
+      <div class="ms-item ms-all" onclick="toggleMsAll('year')" data-page-node-id="rMkZnQZBkpa81QllIhERfJ"><input type="checkbox" id="ms-year-all" checked data-page-node-id="Ou7lbWf80dAdgOH9Cy5F85"> 全选/清空</div>
     </div>
   </div>
-  <label>竣工年份</label>
-  <div class="ms-wrap" id="ms-compl">
-    <div class="ms-trigger" id="ms-compl-trigger" onclick="toggleMs('compl')">全部</div>
-    <div class="ms-dropdown" id="ms-compl-dropdown">
-      <div class="ms-item ms-all" onclick="toggleMsAll('compl')"><input type="checkbox" id="ms-compl-all" checked> 全选/清空</div>
+  <label data-page-node-id="PAuvQqyX1CYkmAamzia3LP">竣工年份</label>
+  <div class="ms-wrap" id="ms-compl" data-page-node-id="i05pEB4bvFM3Ikuuw6NZIh">
+    <div class="ms-trigger" id="ms-compl-trigger" onclick="toggleMs('compl')" data-page-node-id="Nz7yLwOSji5UE3gbPG0rKJ">全部</div>
+    <div class="ms-dropdown" id="ms-compl-dropdown" data-page-node-id="QtvwLwIjffcuEWKY9zr58T">
+      <div class="ms-item ms-all" onclick="toggleMsAll('compl')" data-page-node-id="pLbEiDMjOrj132rsxxVdxm"><input type="checkbox" id="ms-compl-all" checked data-page-node-id="PIA0n9uxnHSBSF9dPdnl6u"> 全选/清空</div>
     </div>
   </div>
-  <label>搜索</label>
-  <input type="text" id="filterSearch" placeholder="项目名称/拿地主体..." oninput="applyFilter()" style="width:200px">
-  <button class="btn-sm btn-reset" onclick="resetFilter()">重置</button>
-  <div class="filter-count">显示 <strong id="showCount">0</strong> / <strong id="totalCount">0</strong> 个项目</div>
+  <label data-page-node-id="nxOXyBD81aRAGRAOi60NiI">搜索</label>
+  <input type="text" id="filterSearch" placeholder="项目名称/拿地主体..." oninput="applyFilter()" style="width:200px" data-page-node-id="dGIHMuMrSiy9wD5dtynMtp">
+  <button class="btn-sm btn-reset" onclick="resetFilter()" data-page-node-id="6ZuErJRLGKQCgDrCurMC3L">重置</button>
+  <div class="filter-count" data-page-node-id="C0nEOlEyqNsm7BiEyDvE3e">显示 <strong id="showCount" data-page-node-id="YDl0MXRKjyHdF0gqvo10mm">0</strong> / <strong id="totalCount" data-page-node-id="rpQc2k3oKJZo94CU3klHYc">0</strong> 个项目</div>
+</div>
+
+<!-- Column Toggle Bar -->
+<div class="col-toggle-bar" id="colToggleBar" data-page-node-id="J3o66y0i0YGdhH6LSOaBzD">
+  <span class="ct-label" data-page-node-id="Sdwtf7S6f4EAPCrvx2XMqm">列显示：</span>
 </div>
 
 <!-- Table -->
-<div class="table-section" id="tableSection"></div>
+<div class="table-section" id="tableSection" data-page-node-id="AQCqpdMysBz0PgHikZzEkV"></div>
 
 <!-- Add Modal -->
-<div class="modal-overlay" id="addModal">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>➕ 新增项目</h2>
-      <button class="modal-close" onclick="closeModal('addModal')">✕</button>
+<div class="modal-overlay" id="addModal" data-page-node-id="k7ksP1tXU6c1i0kkH6WbrO">
+  <div class="modal" data-page-node-id="DFONn2qgvO0NIEuuesywys">
+    <div class="modal-header" data-page-node-id="7AchAfOjsmcMXLiO9NeIbQ">
+      <h2 data-page-node-id="tvFUPH2ZRD3G2BgYHanw6g">➕ 新增项目</h2>
+      <button class="modal-close" onclick="closeModal('addModal')" data-page-node-id="st0inv9R3aIH6E2n9cbHi4">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-group"><label>所属区域 *</label>
-          <select id="f_area"><option>鼓楼区</option><option>晋安区</option><option>台江区</option><option>仓山区</option></select>
+    <div class="modal-body" data-page-node-id="oQTbN3DXhyBjQDUAq9Sjx6">
+      <div class="form-grid" data-page-node-id="rm1G8TaWQEdGGizgntBThi">
+        <div class="form-group" data-page-node-id="ufZOHtnEZUp82F06vWJK4T"><label data-page-node-id="QSpk4wINOZcGAmSH4mysNt">所属区域 *</label>
+          <select id="f_area" data-page-node-id="IYuHZJ2ydJ37UTxHArdWRF"><option data-page-node-id="QLocMHxzTb20EXogVYaA3R">鼓楼区</option><option data-page-node-id="PVb52tzlQwKCwsOzAT32pP">晋安区</option><option data-page-node-id="Ksw6D2S6ZOYnBSRobwdoDt">台江区</option><option data-page-node-id="Cma727YascVhWdIH3zyPBU">仓山区</option></select>
         </div>
-        <div class="form-group"><label>项目类型</label>
-          <select id="f_type"><option value="">—</option><option>地产开发</option><option>公建项目</option><option>公建+市场化运营</option><option>长租公寓</option></select>
+        <div class="form-group" data-page-node-id="bPJpXZFoGkYECSmSbyDRQL"><label data-page-node-id="B8AGcUy1pdtbABxn4oAgvp">项目类型</label>
+          <select id="f_type" data-page-node-id="OurxI2Y3zEVLFF5RL3A2Ac"><option value="" data-page-node-id="EiYfX1bvUQ9Rkd1soc4nwH">—</option><option data-page-node-id="puPysmMMJY9fGFvbf6glBk">地产开发</option><option data-page-node-id="tMCBcf5svZEh6EqNmoItlg">公建项目</option><option data-page-node-id="FNsE2R6p1xefDghU2gDlPS">公建+市场化运营</option><option data-page-node-id="Xmnu5evuUVpXPGbR4vsosQ">长租公寓</option></select>
         </div>
-        <div class="form-group full"><label>项目名称 *</label><input id="f_name" type="text" placeholder="请输入项目名称"></div>
-        <div class="form-group"><label>获取时间</label><input id="f_acquire" type="date"></div>
-        <div class="form-group"><label>竣工时间</label><input id="f_completion" type="date"></div>
-        <div class="form-group"><label>项目状态</label>
-          <select id="f_status"><option value="">—</option><option>待开工</option><option>在建未售</option><option>在建已售</option><option>已竣备</option><option>已交付</option><option>暂缓开工</option><option>已退地</option></select>
+        <div class="form-group full" data-page-node-id="m2GqKQcaBwGc7wlNmxrNXq"><label data-page-node-id="oY1669w5uDgQqsNFlXDxHM">项目名称 *</label><input id="f_name" type="text" placeholder="请输入项目名称" data-page-node-id="cRv2kQ6VMF2SkTR3sbyJOb"></div>
+        <div class="form-group" data-page-node-id="kVxpWc5Jor4FE8B4yEMJK2"><label data-page-node-id="pLOZ5kn8mCEmsVRVbLmTWJ">获取时间</label><input id="f_acquire" type="date" data-page-node-id="XKTBhLkSh39zwTAD3rsWca"></div>
+        <div class="form-group" data-page-node-id="blHJikzeqFqGCScDBRIuey"><label data-page-node-id="30P4aB67n8KsRDucPNEuA0">竣工时间</label><input id="f_completion" type="date" data-page-node-id="A57ssYdvKUPgDcRNHm2pBT"></div>
+        <div class="form-group" data-page-node-id="kWRLNyPXuz1sZvkBzE8Dl5"><label data-page-node-id="suIxUCl0WWGZTWbn0KpRPK">项目状态</label>
+          <select id="f_status" data-page-node-id="0QE7mB9u6OIwRbS2WgKQv8"><option value="" data-page-node-id="JLgVenGqfGPXsWKrZXxeEi">—</option><option data-page-node-id="K4ZfCzp7wvvIEPVPuu1UnU">待开工</option><option data-page-node-id="MQrGL47Sn2seOp0eqUm07R">在建未售</option><option data-page-node-id="RqUgxDZAdfzABVNGUWgQ2L">在建已售</option><option data-page-node-id="yrM98FmnE0rrwbJafr4s9b">已竣备</option><option data-page-node-id="zUTkVVtonyJcUQVQ7g7Qki">已交付</option><option data-page-node-id="3WVvuPDvqvp7CHzvSfuNFD">暂缓开工</option><option data-page-node-id="d9YgzkIWfpzx12g1qcIJ7J">已退地</option></select>
         </div>
-        <div class="form-group"><label>地价（万元）</label><input id="f_land_price" type="number" placeholder="0"></div>
-        <div class="form-group"><label>楼面价（元/㎡）</label><input id="f_floor_price" type="number" placeholder="0"></div>
-        <div class="form-group"><label>占地面积（㎡）</label><input id="f_land_area" type="number" placeholder="0"></div>
-        <div class="form-group"><label>容积率</label><input id="f_far" type="number" step="0.01" placeholder="0.00"></div>
-        <div class="form-group"><label>建设面积（㎡）</label><input id="f_build_area" type="number" placeholder="0"></div>
-        <div class="form-group"><label>总投资（万元）</label><input id="f_investment" type="number" placeholder="0"></div>
-        <div class="form-group"><label>货值（万元）</label><input id="f_value" type="number" placeholder="0" oninput="calcUnsold()"></div>
-        <div class="form-group"><label>分类可售货值（万元）</label><input id="f_saleable_value" type="number" placeholder="手动录入"></div>
-        <div class="form-group"><label>已售货值（万元）</label><input id="f_sold_value" type="number" placeholder="0" oninput="calcUnsold()"></div>
-        <div class="form-group"><label>未售货值（自动计算）</label><input id="f_unsold_value" type="number" placeholder="自动" readonly style="background:#f9fafb"></div>
-        <div class="form-group"><label>开盘/预售信息</label><input id="f_sale_date" type="text" placeholder="如：预售证2024年3月"></div>
-        <div class="form-group full"><label>项目位置</label><input id="f_location" type="text" placeholder="如：晋安区福马路南侧"></div>
-        <div class="form-group full"><label>拿地主体</label><input id="f_entity" type="text" placeholder="如：福州市园开安筑建设有限公司"></div>
-        <div class="form-group"><label>主力面积段</label><input id="f_area_segment" type="text" placeholder="如：89-135㎡ 或 待定"></div>
+        <div class="form-group" data-page-node-id="5wxdTANgHIkxeloRLpWNHq"><label data-page-node-id="eEHw1LMODximz8QtkiaQ64">地价（万元）</label><input id="f_land_price" type="number" placeholder="0" data-page-node-id="Ss6y2VwZyEnmVOGuvCUYT5"></div>
+        <div class="form-group" data-page-node-id="MmphzhiU05sgaZ8y1Fj9Az"><label data-page-node-id="8fDgnIRDuEYmLRGRnZMoLH">楼面价（元/㎡）</label><input id="f_floor_price" type="number" placeholder="0" data-page-node-id="OFp2L6L7AfZRs9GuVTkCjC"></div>
+        <div class="form-group" data-page-node-id="HfHV98xkGUSnbyD8IeTtSz"><label data-page-node-id="khFcr1di3BTXnwDjXSGqz2">占地面积（㎡）</label><input id="f_land_area" type="number" placeholder="0" data-page-node-id="fsVkvfDcb1kppT6uEbFm13"></div>
+        <div class="form-group" data-page-node-id="oQjX4QK7HeBl8DGRabxJ1q"><label data-page-node-id="tGYYmD51zDPrEhZEDM4Hcq">容积率</label><input id="f_far" type="number" step="0.01" placeholder="0.00" data-page-node-id="5AFmoxJngNcy3TJMz7lVEI"></div>
+        <div class="form-group" data-page-node-id="aTuIDScV2Je9DoioShuBQD"><label data-page-node-id="7HVBM4wiWuMsINGqXm1mWy">建设面积（㎡）</label><input id="f_build_area" type="number" placeholder="0" data-page-node-id="Y6sjyj2GDT3FQOPUB2JGIG"></div>
+        <div class="form-group" data-page-node-id="B46anaBkJIQBHKAmOxWFmV"><label data-page-node-id="EXZwRhxtEf8o68DYCnsaxH">总投资（万元）</label><input id="f_investment" type="number" placeholder="0" data-page-node-id="rELF4zFcX9Aal32A2cRI3w"></div>
+        <div class="form-group" data-page-node-id="mZxp6DCCyE0NVwUbxXVbz5"><label data-page-node-id="3FYV9AJrJ0zRQxg6RCOmi7">货值（万元）</label><input id="f_value" type="number" placeholder="0" oninput="calcUnsold()" data-page-node-id="wAUNLtTr1abcGI3Wt7gyId"></div>
+        <div class="form-group" data-page-node-id="258fcVQY0PvYVYQmeMtshd"><label data-page-node-id="G1FxTZK9TkPRx9CyADizQ6">分类可售货值（万元）</label><input id="f_saleable_value" type="number" placeholder="手动录入" data-page-node-id="cMZFDueucm1i2muOgZzIuT"></div>
+        <div class="form-group" data-page-node-id="J7Y5g0vu98zhWOlkZcavfQ"><label data-page-node-id="DJoM8jYgNw5VWuhEVkalKD">已售货值（万元）</label><input id="f_sold_value" type="number" placeholder="0" oninput="calcUnsold()" data-page-node-id="LN6TjMYzVvrpx1Fdksm9qV"></div>
+        <div class="form-group" data-page-node-id="ogG5aaZpHWbyPFwfu7kXFn"><label data-page-node-id="LpGahOQq6DSVSPKUeuvGLF">未售货值（自动计算）</label><input id="f_unsold_value" type="number" placeholder="自动" readonly style="background:#f9fafb" data-page-node-id="K0u0NGeqKkOJAE7un57QVV"></div>
+        <div class="form-group" data-page-node-id="iVK5Dh9KgwKab047cijWZ5"><label data-page-node-id="WICWnjcD9dWwTMjk4HBiUL">开盘/预售信息</label><input id="f_sale_date" type="text" placeholder="如：预售证2024年3月" data-page-node-id="DGQhH8xq0GjSlsJN8JPh4P"></div>
+        <div class="form-group full" data-page-node-id="gF22fTAYZA1vwPjMRaT82W"><label data-page-node-id="BLERwmOhmfkx9BQI93Q74Y">项目位置</label><input id="f_location" type="text" placeholder="如：晋安区福马路南侧" data-page-node-id="tkqMNdXTqxzP0qlgPvcdCK"></div>
+        <div class="form-group full" data-page-node-id="3LmhsYnFtIA0vBEgvSG1ZS"><label data-page-node-id="NQ6fyuLwhdcvfxRJKuYApe">拿地主体</label><input id="f_entity" type="text" placeholder="如：福州市园开安筑建设有限公司" data-page-node-id="8nfWvrNRtJn18kHmPX0dxB"></div>
+        <div class="form-group" data-page-node-id="8xleR9Vxo3G2yae7VU8rsg"><label data-page-node-id="5RKrXi8Tww6JEEfjDf6tEO">主力面积段</label><input id="f_area_segment" type="text" placeholder="如：89-135㎡ 或 待定" data-page-node-id="HcZ8lKXww3p11E5WUEcWjr"></div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn-cancel" onclick="closeModal('addModal')">取消</button>
-      <button class="btn-confirm" onclick="confirmAdd()">确认新增</button>
+    <div class="modal-footer" data-page-node-id="6mGc2l255cLgzYkzuA8q5T">
+      <button class="btn-cancel" onclick="closeModal('addModal')" data-page-node-id="ZsCf2ZjSiFukj7ZE6g0WMK">取消</button>
+      <button class="btn-confirm" onclick="confirmAdd()" data-page-node-id="gP3wEIEGorBZO1sG58lPn7">确认新增</button>
     </div>
   </div>
 </div>
 
 <!-- Drilldown Panel -->
-<div class="drilldown-overlay" id="drillOverlay" onclick="closeDrilldown()"></div>
-<div class="drilldown-panel" id="drillPanel">
-  <div class="drilldown-header">
-    <h3 id="drillTitle">区域明细</h3>
-    <button class="drilldown-close" onclick="closeDrilldown()">✕</button>
+<div class="drilldown-overlay" id="drillOverlay" onclick="closeDrilldown()" data-page-node-id="Fo1uLtR6vANITkSrFQvpJd"></div>
+<div class="drilldown-panel" id="drillPanel" data-page-node-id="e68DTj7LaKtRJIXrPzTAur">
+  <div class="drilldown-header" data-page-node-id="oGGcShIac8rJgd5vqCvCe2">
+    <h3 id="drillTitle" data-page-node-id="x8pNSqYs3t3oH3hJMHnkFy">区域明细</h3>
+    <button class="drilldown-close" onclick="closeDrilldown()" data-page-node-id="S8LbuWGjpiHBcNleQCd4NF">✕</button>
   </div>
-  <div class="drilldown-body" id="drillBody"></div>
+  <div class="drilldown-body" id="drillBody" data-page-node-id="FlnDD5nOZhZhwlMHifABtd"></div>
 </div>
 
 <script>
@@ -394,16 +416,16 @@ let projects = [
     "status": "已交付",
     "avg_price": "商品房38000元/平（预估）",
     "saleable_value": 28707,
-    "sold_value": 26821,
+    "sold_value": 27225,
     "dev_loan": 5000,
     "resettlement_sold": 24075,
     "resettlement_value": 3102,
     "resettlement_unsold": 23775.45,
     "resettlement_repaid": 300,
-      "location": "鼓楼区西洪路",
+    "location": "鼓楼区西洪路",
     "area_segment": "45-110㎡",
-    "entity": "福州左投置业有限公司",
-},
+    "entity": "福州左投置业有限公司"
+  },
   {
     "seq": 2,
     "area": "鼓楼区",
@@ -424,7 +446,7 @@ let projects = [
     "commercial_units": 14,
     "commercial_area": 1779,
     "investment": 25430,
-    "value": 24045,
+    "value": 22809,
     "status": "已交付",
     "avg_price": "商品房37986元/平",
     "saleable_value": 5515,
@@ -434,14 +456,14 @@ let projects = [
     "resettlement_value": 17296,
     "resettlement_unsold": 1737,
     "resettlement_repaid": 15557,
-      "location": "鼓楼区海潮路南侧",
+    "location": "鼓楼区海潮路南侧",
     "area_segment": "/",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 3,
     "area": "鼓楼区",
-    "name": "2025-45号 河南小柳新村",
+    "name": "宸樾公馆（2025-45小柳地块）",
     "type": "地产开发",
     "acquire_date": "2025-11-07",
     "land_date": "",
@@ -459,15 +481,16 @@ let projects = [
     "commercial_area": null,
     "investment": 447367,
     "value": 455296,
-    "status": "待开工",
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "鼓楼区西二环东侧、新西河南侧",
-    "area_segment": "200-380㎡",
+    "location": "鼓楼区西二环东侧、新西河南侧",
+    "area_segment": "149-175-220㎡",
     "entity": "福州市园开安筑建设有限公司",
-},
+    "saleable_ratio": 72
+  },
   {
     "seq": 4,
     "area": "晋安区",
@@ -488,20 +511,20 @@ let projects = [
     "commercial_units": 248,
     "commercial_area": 19678,
     "investment": 148192,
-    "value": 139566,
+    "value": 141954,
     "status": "已交付",
     "avg_price": "商品房26000元/平",
-    "saleable_value": 49490,
-    "sold_value": 0,
+    "saleable_value": 55770,
+    "sold_value": null,
     "dev_loan": 7378,
     "resettlement_value": 84465,
     "resettlement_sold": 86184,
-    "resettlement_unsold": 52398.22,
-    "resettlement_repaid": 33786.41,
-      "location": "晋安区东三南路东侧，鼓山中学旁",
+    "resettlement_unsold": 27058.42,
+    "resettlement_repaid": 59126.21,
+    "location": "晋安区东三南路东侧，鼓山中学旁",
     "area_segment": "79-89㎡",
-    "entity": "福州左晋实业有限公司",
-},
+    "entity": "福州左晋实业有限公司"
+  },
   {
     "seq": 5,
     "area": "晋安区",
@@ -522,20 +545,20 @@ let projects = [
     "commercial_units": 0,
     "commercial_area": 0,
     "investment": 23700,
-    "value": 27562,
+    "value": 27532,
     "status": "已交付",
     "avg_price": "",
     "saleable_value": 2717,
-    "sold_value": 0,
+    "sold_value": null,
     "dev_loan": 0,
     "resettlement_sold": 24845,
     "resettlement_value": 24845,
     "resettlement_unsold": 2135.65,
     "resettlement_repaid": 22679.24,
-      "location": "晋安区三环路东侧",
+    "location": "晋安区三环路东侧",
     "area_segment": "/",
-    "entity": "福州市园开安筑建设有限公司",
-},
+    "entity": "福州市园开安筑建设有限公司"
+  },
   {
     "seq": 6,
     "area": "晋安区",
@@ -563,12 +586,12 @@ let projects = [
     "dev_loan": null,
     "resettlement_sold": 2407,
     "resettlement_value": 0,
-    "resettlement_unsold": 1203.5,
-    "resettlement_repaid": 1203.5,
-      "location": "晋安区福马路鼓山下院广场",
+    "resettlement_unsold": 590,
+    "resettlement_repaid": 1817,
+    "location": "晋安区福马路鼓山下院广场",
     "area_segment": "地下商业、车位（自持）",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 7,
     "area": "晋安区",
@@ -589,7 +612,7 @@ let projects = [
     "commercial_units": 0,
     "commercial_area": 0,
     "investment": 121760,
-    "value": 126680,
+    "value": 126473,
     "status": "已交付",
     "avg_price": "",
     "saleable_value": 58922,
@@ -597,12 +620,12 @@ let projects = [
     "dev_loan": 0,
     "resettlement_sold": 67551,
     "resettlement_value": 67201,
-    "resettlement_unsold": 7017.42,
-    "resettlement_repaid": 60533.3364,
-      "location": "晋安区化工路以北，鹤林片区",
+    "resettlement_unsold": 1905.22,
+    "resettlement_repaid": 65645.54,
+    "location": "晋安区化工路以北，鹤林片区",
     "area_segment": "/",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 8,
     "area": "晋安区",
@@ -633,10 +656,10 @@ let projects = [
     "resettlement_value": 88398,
     "resettlement_unsold": 1782.73,
     "resettlement_repaid": 88560.19598499998,
-      "location": "晋安区新店镇汤斜村",
+    "location": "晋安区新店镇汤斜村",
     "area_segment": "/",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 9,
     "area": "晋安区",
@@ -657,7 +680,7 @@ let projects = [
     "commercial_units": 97,
     "commercial_area": 7780,
     "investment": 100000,
-    "value": 113202,
+    "value": 110202,
     "status": "已交付",
     "avg_price": "商品房20900元/平",
     "saleable_value": 23604,
@@ -665,12 +688,12 @@ let projects = [
     "dev_loan": 0,
     "resettlement_sold": 89598,
     "resettlement_value": 86430,
-    "resettlement_unsold": 1479.72,
-    "resettlement_repaid": 85118.57083,
-      "location": "晋安区三八路与连江北路交界处",
+    "resettlement_unsold": 477.29,
+    "resettlement_repaid": 86121,
+    "location": "晋安区三八路与连江北路交界处",
     "area_segment": "/",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 10,
     "area": "晋安区",
@@ -691,20 +714,21 @@ let projects = [
     "commercial_units": 281,
     "commercial_area": 26310,
     "investment": 330054,
-    "value": 463171,
-    "status": "在建",
+    "value": 470786,
+    "status": "已交付",
     "avg_price": "商品房21000元/平",
-    "saleable_value": 5479,
-    "sold_value": 5131,
+    "saleable_value": 27119,
+    "sold_value": 5455,
     "dev_loan": 23400,
     "resettlement_sold": 443359,
     "resettlement_value": 438375,
     "resettlement_unsold": 355929.76,
     "resettlement_repaid": 87736.55,
-      "location": "晋安区福光南路以东，远洋路以北，三远片区项目A3出让地块",
+    "location": "晋安区福光南路以东，远洋路以北，三远片区项目A3出让地块",
     "area_segment": "/",
     "entity": "福州左连房地产开发有限公司",
-},
+    "saleable_ratio": 70.2
+  },
   {
     "seq": 11,
     "area": "晋安区",
@@ -725,20 +749,20 @@ let projects = [
     "commercial_units": 253,
     "commercial_area": 22370,
     "investment": 75166,
-    "value": 97378,
-    "status": "在建",
+    "value": 101990,
+    "status": "已交付",
     "avg_price": "商品房18500-21000元/平",
-    "saleable_value": 22084,
-    "sold_value": 17544,
+    "saleable_value": 24330,
+    "sold_value": 17771,
     "dev_loan": 15893,
     "resettlement_sold": 77179,
     "resettlement_value": 68467,
-    "resettlement_unsold": 63962.89,
-    "resettlement_repaid": 13696.88,
-      "location": "晋安区福马路南侧、秀坂路东侧",
+    "resettlement_unsold": 50265.89,
+    "resettlement_repaid": 27393.88,
+    "location": "晋安区福马路南侧、秀坂路东侧",
     "area_segment": "45-135㎡",
-    "entity": "福州左连房地产开发有限公司",
-},
+    "entity": "福州左连房地产开发有限公司"
+  },
   {
     "seq": 12,
     "area": "晋安区",
@@ -759,17 +783,17 @@ let projects = [
     "commercial_units": 0,
     "commercial_area": 0,
     "investment": 115374,
-    "value": 108820,
-    "status": "在建",
+    "value": 108485,
+    "status": "已交付",
     "avg_price": "商品房23000-27000元/平",
-    "saleable_value": 105881,
-    "sold_value": 97391,
+    "saleable_value": 108485,
+    "sold_value": 101829,
     "dev_loan": 10000,
     "resettlement_repaid": 0,
-      "location": "晋安区福马路南侧、秀坂路东侧",
+    "location": "晋安区福马路南侧、秀坂路东侧",
     "area_segment": "89-113㎡",
-    "entity": "福州左连房地产开发有限公司",
-},
+    "entity": "福州左连房地产开发有限公司"
+  },
   {
     "seq": 13,
     "area": "晋安区",
@@ -790,17 +814,17 @@ let projects = [
     "commercial_units": 0,
     "commercial_area": 0,
     "investment": 83640,
-    "value": 109077,
-    "status": "在建",
+    "value": 107702,
+    "status": "在建已售",
     "avg_price": "商品房27000元/平",
-    "saleable_value": 110497,
-    "sold_value": 3700,
+    "saleable_value": 107702,
+    "sold_value": 4703,
     "dev_loan": 10000,
     "resettlement_repaid": 0,
-      "location": "晋安区东三环沿线，樟林路东北侧出让地块",
+    "location": "晋安区东三环沿线，樟林路东北侧出让地块",
     "area_segment": "联排&叠拼220㎡左右",
-    "entity": "福州左樟房地产开发有限公司",
-},
+    "entity": "福州左樟房地产开发有限公司"
+  },
   {
     "seq": 14,
     "area": "晋安区",
@@ -822,7 +846,7 @@ let projects = [
     "commercial_area": 0,
     "investment": 480301,
     "value": 545365,
-    "status": "在建",
+    "status": "在建未售",
     "avg_price": "商品房16000元/平",
     "sold_value": 0,
     "dev_loan": null,
@@ -830,10 +854,10 @@ let projects = [
     "resettlement_value": 516051,
     "resettlement_unsold": 536836.72,
     "resettlement_repaid": 0,
-      "location": "晋安区长乐中路东侧，国货东路北侧",
+    "location": "晋安区长乐中路东侧，国货东路北侧",
     "area_segment": "/",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 15,
     "area": "晋安区",
@@ -864,10 +888,10 @@ let projects = [
     "resettlement_value": 0,
     "resettlement_unsold": 0,
     "resettlement_repaid": 0,
-      "location": "晋安区桂山路东侧与沁园支路北侧",
+    "location": "晋安区桂山路东侧与沁园支路北侧",
     "area_segment": "待定",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 16,
     "area": "晋安区",
@@ -889,19 +913,19 @@ let projects = [
     "commercial_area": null,
     "investment": 135946,
     "value": 190186,
-    "status": "在建",
+    "status": "在建已售",
     "avg_price": "",
-    "saleable_value": 115886,
-    "sold_value": 7776,
+    "saleable_value": 115543,
+    "sold_value": 11258,
     "dev_loan": 25000,
     "resettlement_sold": 0,
     "resettlement_value": 2989.6,
     "resettlement_unsold": 2989.6,
     "resettlement_repaid": 0,
-      "location": "晋安区福马路北侧，长乐北路与紫新东路交叉东南侧",
+    "location": "晋安区福马路北侧，长乐北路与紫新东路交叉东南侧",
     "area_segment": "189-210㎡",
-    "entity": "福州市园开安筑建设有限公司",
-},
+    "entity": "福州市园开安筑建设有限公司"
+  },
   {
     "seq": 17,
     "area": "晋安区",
@@ -909,7 +933,7 @@ let projects = [
     "type": "长租公寓",
     "acquire_date": "2023-05-18",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2025-12-30",
     "sale_date": "",
     "land_price": 5860,
     "floor_price": 3464,
@@ -928,10 +952,10 @@ let projects = [
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "晋安区坂中路北侧，战坂路东侧出让地块二",
+    "location": "晋安区坂中路北侧，战坂路东侧出让地块二",
     "area_segment": "自主运营长租公寓",
-    "entity": "福州市战坂置业有限公司",
-},
+    "entity": "福州市战坂置业有限公司"
+  },
   {
     "seq": 18,
     "area": "晋安区",
@@ -958,10 +982,10 @@ let projects = [
     "sold_value": 0,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "晋安区桂山路东北侧",
+    "location": "晋安区桂山路东北侧",
     "area_segment": "待定",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 19,
     "area": "晋安区",
@@ -988,18 +1012,18 @@ let projects = [
     "sold_value": 0,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "晋安区沁园支路东北侧",
+    "location": "晋安区沁园支路东北侧",
     "area_segment": "待定",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 20,
     "area": "晋安区",
-    "name": "东郊河2025-68 （三八路地块）",
+    "name": "华起宸庐（2025-68 三八路地块）",
     "type": "地产开发",
     "acquire_date": "2025-11-28",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2028-12-30",
     "sale_date": "",
     "land_price": 11200,
     "floor_price": 16167,
@@ -1013,15 +1037,16 @@ let projects = [
     "commercial_area": null,
     "investment": 22438,
     "value": 22312,
-    "status": "待开工",
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "晋安区北二环路南侧，环南新村及周边出让地块四",
-    "area_segment": "175-330㎡",
+    "location": "晋安区北二环路南侧，环南新村及周边出让地块四",
+    "area_segment": "132-167㎡",
     "entity": "福州市园开安筑建设有限公司",
-},
+    "saleable_ratio": 63.6
+  },
   {
     "seq": 21,
     "area": "晋安区",
@@ -1029,7 +1054,7 @@ let projects = [
     "type": "地产开发",
     "acquire_date": "2025-06-30",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2028-12-30",
     "sale_date": "",
     "land_price": 237000,
     "floor_price": 20900,
@@ -1042,16 +1067,17 @@ let projects = [
     "commercial_units": null,
     "commercial_area": null,
     "investment": 432285,
-    "value": 460087,
-    "status": "在建",
+    "value": 463859,
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "晋安区三八路西侧，东郊河沿线出让地块二",
-    "area_segment": "洋房&叠拼115-220㎡",
+    "location": "晋安区三八路西侧，东郊河沿线出让地块二",
+    "area_segment": "175-200-230-255-272-350㎡",
     "entity": "福州市园开安筑建设有限公司",
-},
+    "saleable_ratio": 73.7
+  },
   {
     "seq": 22,
     "area": "晋安区",
@@ -1059,7 +1085,7 @@ let projects = [
     "type": "地产开发",
     "acquire_date": "2026-01-16",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2028-12-30",
     "sale_date": "",
     "land_price": 53900,
     "floor_price": 21245,
@@ -1073,15 +1099,16 @@ let projects = [
     "commercial_area": null,
     "investment": 89861,
     "value": 90152,
-    "status": "",
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "晋安区塔头路北侧(琯尾街出让地块三)",
-    "area_segment": "138-177㎡",
+    "location": "晋安区塔头路北侧(琯尾街出让地块三)",
+    "area_segment": "137-145-153-156-175㎡",
     "entity": "福州市园开安筑建设有限公司",
-},
+    "saleable_ratio": 69.72
+  },
   {
     "seq": 23,
     "area": "台江区",
@@ -1089,7 +1116,7 @@ let projects = [
     "type": "公建+市场化运营",
     "acquire_date": "2018-07-20",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2025-12-31",
     "sale_date": "",
     "land_price": 69100,
     "floor_price": null,
@@ -1102,16 +1129,17 @@ let projects = [
     "commercial_units": null,
     "commercial_area": null,
     "investment": 206079,
-    "value": 0,
+    "value": 12200,
     "status": "已交付",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "台江区江滨大道北侧，闽江五桥、六桥之间，滨江市民广场地块",
+    "resettlement_unsold": 12200,
+    "location": "台江区江滨大道北侧，闽江五桥、六桥之间，滨江市民广场地块",
     "area_segment": "地下商业、车位（自持）",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 23,
     "area": "台江区",
@@ -1133,15 +1161,15 @@ let projects = [
     "commercial_area": null,
     "investment": 0,
     "value": 0,
-    "status": "已开放",
+    "status": "已交付",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "台江区江滨大道北侧，闽江五桥、六桥之间，滨江市民广场地块",
+    "location": "台江区江滨大道北侧，闽江五桥、六桥之间，滨江市民广场地块",
     "area_segment": "地下商业、车位（自持）",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 24,
     "area": "仓山区",
@@ -1162,20 +1190,20 @@ let projects = [
     "commercial_units": 690,
     "commercial_area": 93003,
     "investment": 294795,
-    "value": 285718,
+    "value": 273484,
     "status": "已交付",
     "avg_price": "商品房25000元/平",
-    "saleable_value": 268480,
-    "sold_value": 168937,
+    "saleable_value": 271985,
+    "sold_value": 178312,
     "dev_loan": 36000,
     "resettlement_sold": 1499,
     "resettlement_value": 0,
     "resettlement_unsold": 1499.26,
     "resettlement_repaid": 0,
-      "location": "仓山区南二环路北侧，则徐大道西侧",
+    "location": "仓山区南二环路北侧，则徐大道西侧",
     "area_segment": "89-148㎡",
-    "entity": "福州市北源房地产开发有限公司",
-},
+    "entity": "福州市北源房地产开发有限公司"
+  },
   {
     "seq": 24,
     "area": "仓山区",
@@ -1206,10 +1234,10 @@ let projects = [
     "resettlement_value": null,
     "resettlement_unsold": null,
     "resettlement_repaid": null,
-      "location": "仓山区南二环路北侧，则徐大道西侧",
+    "location": "仓山区南二环路北侧，则徐大道西侧",
     "area_segment": "89-148㎡",
-    "entity": "福州市北源房地产开发有限公司",
-},
+    "entity": "福州市北源房地产开发有限公司"
+  },
   {
     "seq": 25,
     "area": "仓山区",
@@ -1230,17 +1258,17 @@ let projects = [
     "commercial_units": 408,
     "commercial_area": 59975,
     "investment": 181829,
-    "value": 224631,
-    "status": "在建",
+    "value": 219427,
+    "status": "已竣备",
     "avg_price": "限价39500元/平",
-    "saleable_value": 219566,
-    "sold_value": 94825,
+    "saleable_value": 219427,
+    "sold_value": 99967,
     "dev_loan": 30000,
     "resettlement_repaid": 0,
-      "location": "仓山区横江路与东尤溪洲路交叉口西南侧出让地块",
+    "location": "仓山区横江路与东尤溪洲路交叉口西南侧出让地块",
     "area_segment": "130-170㎡",
-    "entity": "福州左台置业有限公司",
-},
+    "entity": "福州左台置业有限公司"
+  },
   {
     "seq": 26,
     "area": "仓山区",
@@ -1262,16 +1290,16 @@ let projects = [
     "commercial_area": null,
     "investment": 140394,
     "value": 178506,
-    "status": "在建",
+    "status": "在建已售",
     "avg_price": "",
-    "saleable_value": 0,
-    "sold_value": 0,
+    "saleable_value": 141196,
+    "sold_value": 824,
     "dev_loan": 30000,
     "resettlement_repaid": 0,
-      "location": "仓山区金阵路与闽江大道交叉口东南侧，闽江大道西侧出让地块",
+    "location": "仓山区金阵路与闽江大道交叉口东南侧，闽江大道西侧出让地块",
     "area_segment": "160-189㎡",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 27,
     "area": "仓山区",
@@ -1293,18 +1321,18 @@ let projects = [
     "commercial_area": null,
     "investment": 112310,
     "value": 110880,
-    "status": "在建",
+    "status": "在建已售",
     "avg_price": "",
-    "saleable_value": 57457,
-    "sold_value": 7927,
+    "saleable_value": 53114,
+    "sold_value": 20108,
     "dev_loan": 10000,
     "resettlement_sold": 1252,
-    "resettlement_unsold": 1251.6,
-    "resettlement_repaid": 0,
-      "location": "仓山区金塘路与金榕北路交叉口南侧出让地块二",
+    "resettlement_unsold": 1126.6,
+    "resettlement_repaid": 125,
+    "location": "仓山区金塘路与金榕北路交叉口南侧出让地块二",
     "area_segment": "107-136㎡",
-    "entity": "福州工业园区开发集团有限公司",
-},
+    "entity": "福州工业园区开发集团有限公司"
+  },
   {
     "seq": 28,
     "area": "仓山区",
@@ -1326,24 +1354,25 @@ let projects = [
     "commercial_area": null,
     "investment": 207614,
     "value": 212729,
-    "status": "在建",
+    "status": "在建已售",
     "avg_price": "",
-    "saleable_value": 142921,
-    "sold_value": 31985,
+    "saleable_value": 175331,
+    "sold_value": 47354,
     "dev_loan": 25000,
     "resettlement_repaid": 0,
-      "location": "仓山区建新北路与金达路交叉口东侧",
+    "location": "仓山区建新北路与金达路交叉口东侧",
     "area_segment": "128-149㎡",
     "entity": "福州工业园区开发集团有限公司",
-},
+    "saleable_ratio": 74.1
+  },
   {
     "seq": 29,
     "area": "仓山区",
-    "name": "2024-60号福峡路E-07地块",
+    "name": "嘉璟澜庭（2024-60号福峡路地块）",
     "type": "地产开发",
     "acquire_date": "2024-11-22",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2028-12-30",
     "sale_date": "",
     "land_price": 35800,
     "floor_price": 6816,
@@ -1355,17 +1384,18 @@ let projects = [
     "resettlement_area": null,
     "commercial_units": null,
     "commercial_area": null,
-    "investment": null,
-    "value": null,
-    "status": "暂缓开工",
+    "investment": 71828,
+    "value": 71323,
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": 0,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "仓山区福峡路西南侧、螺洲路东侧，福峡路沿线E-07地块",
+    "location": "仓山区福峡路西南侧、螺洲路东侧，福峡路沿线E-07地块",
     "area_segment": "待定",
     "entity": "福州工业园区开发集团有限公司",
-},
+    "saleable_ratio": 70.3
+  },
   {
     "seq": 30,
     "area": "仓山区",
@@ -1387,17 +1417,18 @@ let projects = [
     "commercial_area": null,
     "investment": 185796,
     "value": 230717,
-    "status": "在建",
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": 0,
     "dev_loan": null,
     "resettlement_sold": 3154,
     "resettlement_unsold": 3301.82,
     "resettlement_repaid": 0,
-      "location": "仓山区则徐大道西侧，原福州三威橡塑化工有限公司及周边地块",
-    "area_segment": "169-236㎡",
+    "location": "仓山区则徐大道西侧，原福州三威橡塑化工有限公司及周边地块",
+    "area_segment": "165-170-195-230㎡",
     "entity": "福州工业园区开发集团有限公司",
-},
+    "saleable_ratio": 67.24
+  },
   {
     "seq": 31,
     "area": "仓山区",
@@ -1405,7 +1436,7 @@ let projects = [
     "type": "地产开发",
     "acquire_date": "2025-05-09",
     "land_date": "",
-    "completion_date": "",
+    "completion_date": "2027-09-30",
     "sale_date": "",
     "land_price": 27300,
     "floor_price": 16050,
@@ -1419,20 +1450,21 @@ let projects = [
     "commercial_area": null,
     "investment": 53855,
     "value": 49081,
-    "status": "在建",
+    "status": "在建已售",
     "avg_price": "",
-    "saleable_value": 29284,
-    "sold_value": 4155,
+    "saleable_value": 51025,
+    "sold_value": 7834,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "仓山区凤岗路北侧、刘宅路西侧出让地块",
+    "location": "仓山区凤岗路北侧、刘宅路西侧出让地块",
     "area_segment": "146-169㎡",
     "entity": "福州市北源房地产开发有限公司",
-},
+    "saleable_ratio": 61.06
+  },
   {
     "seq": 32,
     "area": "仓山区",
-    "name": "2025-46号 复园路地块",
+    "name": "2025-46号云庐公馆 （复园路1926）",
     "type": "地产开发",
     "acquire_date": "2025-11-07",
     "land_date": "",
@@ -1450,15 +1482,16 @@ let projects = [
     "commercial_area": null,
     "investment": 51934,
     "value": 54651,
-    "status": "待开工",
+    "status": "在建未售",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "仓山区复园路北侧、聚和路东侧",
-    "area_segment": "独栋别墅400-1100㎡",
+    "location": "仓山区复园路北侧、聚和路东侧",
+    "area_segment": "145-168-188㎡",
     "entity": "福州市园开安筑建设有限公司",
-},
+    "saleable_ratio": 58.87
+  },
   {
     "seq": 33,
     "area": "仓山区",
@@ -1485,18 +1518,18 @@ let projects = [
     "sold_value": null,
     "dev_loan": null,
     "resettlement_repaid": 0,
-      "location": "仓山区环岛路与螺洲路交叉口西北侧出让地块",
+    "location": "仓山区环岛路与螺洲路交叉口西北侧出让地块",
     "area_segment": "待定",
-    "entity": "福州市园开安筑建设有限公司",
-},
+    "entity": "福州市园开安筑建设有限公司"
+  },
   {
     "seq": 34,
     "area": "晋安区",
-    "name": "生物工程学院",
+    "name": "拾光城悦公馆（2026-08生物工程地块）",
     "type": "地产开发",
-    "acquire_date": null,
+    "acquire_date": "2026-06-04",
     "land_date": null,
-    "completion_date": null,
+    "completion_date": "2028-12-30",
     "sale_date": null,
     "land_price": 10000,
     "floor_price": 4952,
@@ -1508,9 +1541,44 @@ let projects = [
     "resettlement_area": null,
     "commercial_units": null,
     "commercial_area": null,
-    "investment": 27963,
+    "investment": 25506,
+    "value": 25065,
+    "status": "在建未售",
+    "avg_price": null,
+    "saleable_value": 0,
+    "sold_value": null,
+    "dev_loan": null,
+    "resettlement_sold": null,
+    "resettlement_value": null,
+    "resettlement_unsold": null,
+    "resettlement_repaid": null,
+    "location": "晋安区新店镇汤斜村、绕城高速公路以南",
+    "area_segment": "79-89",
+    "entity": "福州市园开安筑建设有限公司",
+    "saleable_ratio": 70.63
+  },
+  {
+    "seq": 35,
+    "area": "仓山区",
+    "name": "郭宅C11（2026-18地块）",
+    "type": "地产开发",
+    "acquire_date": "2026-06-30",
+    "land_date": null,
+    "completion_date": null,
+    "sale_date": null,
+    "land_price": 33400,
+    "floor_price": 11960,
+    "land_area": 18617,
+    "far": null,
+    "total_area": null,
+    "build_area": 42756,
+    "resettlement_units": null,
+    "resettlement_area": null,
+    "commercial_units": null,
+    "commercial_area": null,
+    "investment": null,
     "value": null,
-    "status": "未交地",
+    "status": "暂缓开工",
     "avg_price": null,
     "saleable_value": null,
     "sold_value": null,
@@ -1519,25 +1587,189 @@ let projects = [
     "resettlement_value": null,
     "resettlement_unsold": null,
     "resettlement_repaid": null,
-    "location": "晋安区新店镇汤斜村、绕城高速公路以南",
+    "location": "仓山区南二环郭宅村",
     "area_segment": "待定",
     "entity": "福州市园开安筑建设有限公司"
-}
+  },
+  {
+    "seq": 36,
+    "area": "仓山区",
+    "name": "凤启宸庐（凤山2026-36 G26地块）",
+    "type": "地产开发",
+    "acquire_date": "2026-09-09",
+    "land_date": null,
+    "completion_date": null,
+    "sale_date": null,
+    "land_price": 56300,
+    "floor_price": 9341.8,
+    "land_area": 46359,
+    "far": 1.3,
+    "total_area": 60267,
+    "build_area": 90067,
+    "resettlement_units": null,
+    "resettlement_area": null,
+    "commercial_units": null,
+    "commercial_area": null,
+    "investment": 132572,
+    "value": 134720,
+    "status": "待开工",
+    "avg_price": null,
+    "saleable_value": null,
+    "sold_value": null,
+    "dev_loan": null,
+    "resettlement_sold": null,
+    "resettlement_value": null,
+    "resettlement_unsold": null,
+    "resettlement_repaid": null,
+    "location": "仓山区东岭路西侧、飞凤山南侧（奥体板块）",
+    "area_segment": "115-125-280㎡",
+    "entity": "福州市园开安筑建设有限公司"
+  },
+  {
+    "seq": 37,
+    "area": "仓山区",
+    "name": "三江口C-15地块A（2026-41地块）",
+    "type": "地产开发",
+    "acquire_date": "2026-09-23",
+    "land_date": null,
+    "completion_date": null,
+    "sale_date": null,
+    "land_price": 65000,
+    "floor_price": 6650,
+    "land_area": 42500,
+    "far": 2.3,
+    "total_area": 97750,
+    "build_area": 97750,
+    "resettlement_units": null,
+    "resettlement_area": null,
+    "commercial_units": null,
+    "commercial_area": null,
+    "investment": null,
+    "value": null,
+    "status": "暂缓开工",
+    "avg_price": null,
+    "saleable_value": null,
+    "sold_value": null,
+    "dev_loan": null,
+    "resettlement_sold": null,
+    "resettlement_value": null,
+    "resettlement_unsold": null,
+    "resettlement_repaid": null,
+    "location": "仓山区螺城路西侧、福州连接线东侧（三江口C-15地块A）",
+    "area_segment": "待定",
+    "entity": "福州市园开安筑建设有限公司"
+  }
 ];
 // __PROJECTS_DATA_END__
-
 const AREAS = ['鼓楼区','晋安区','台江区','仓山区'];
 const AREA_COLORS = {'鼓楼区':'#4F46E5','晋安区':'#0EA5E9','台江区':'#8B5CF6','仓山区':'#10B981'};
 const TYPE_LIST = ['','地产开发','公建项目','公建+市场化运营','长租公寓'];
 const STATUS_LIST = ['','待开工','在建未售','在建已售','已竣备','已交付','暂缓开工','已退地'];
 
+// ===== 列分组折叠配置 =====
+// 将表格列按逻辑分组，部分组默认折叠，点击按钮展开/收起
+const COL_GROUP_DEFS = [
+  { key:'basic',   label:'基本信息', span:3,  cols:['seq','name','status'] },
+  { key:'time',    label:'时间节点', span:2,  cols:['acquire_date','completion_date'], defaultHidden:true },
+  { key:'scale',   label:'规模指标', span:5,  cols:['land_price','floor_price','land_area','build_area','saleable_ratio'] },
+  { key:'finance', label:'财务指标', span:10, cols:['investment','value','saleable_value','ratio','sold_value','unsold','resettlement_repaid','resettlement_unsold','fullUnsold'] },
+  { key:'detail',  label:'项目详情', span:3,  cols:['location','entity','area_segment'], defaultHidden:true }
+];
+// 当前各组的可见状态（true=显示）
+const colVisibility = {};
+COL_GROUP_DEFS.forEach(g => { colVisibility[g.key] = !g.defaultHidden; });
+
 // ===== LOCALSTORAGE 持久化 =====
 const LS_KEY = 'asset_list_edits_v1';
+const LS_ADD_KEY = 'asset_list_added_v2'; // 新增项目本地备份
+const LS_VER_KEY = 'asset_list_data_version';
+const DATA_VERSION = '20260923c'; // 每次源文件数据更新时递增，自动清除过期缓存 // 每次源文件数据更新时递增，自动清除过期缓存
+const DATA_AS_OF = '2026-08-31'; // 数据截止日（同步来源：腾讯文档「库存盘点表（数据截至0831）」），每次同步后人工更新此常量 + DATA_VERSION
 // 可被用户编辑的字段（用 seq 作为 key 存储覆盖）
 const EDITABLE_FIELDS = ['status','type','acquire_date','completion_date','sale_date','investment','value','sold_value','saleable_value'];
+// 全盘货值(value)跟随已取证货值(saleable_value)联动的项目 seq
+// 这些项目已全盘取证，故「全盘货值 = 已取证货值」；编辑 saleable_value 时 value 自动跟随
+const VALUE_FOLLOWS_SALEABLE = [24, 12, 13, 25]; // 望岳公馆B / 星悦颂(紫晋雅院) / 云山宸院 / 烟山江翠
+// 名单内项目「总货值」相对「已取证货值」的固定偏移（万元）：望岳公馆B 含安置房已售1499万
+const VALUE_OFFSET = {24: 1499};
 
 // 每个项目的唯一缓存key = seq + '|' + name，A/B地块各自独立
 function projKey(p) { return p.seq + '|' + p.name; }
+
+// ===== 新增项目 local 持久化（同步写入，刷新必不丢） =====
+function loadAddedFromLocal() {
+  try {
+    const raw = localStorage.getItem(LS_ADD_KEY);
+    if (!raw) return;
+    const added = JSON.parse(raw);
+    if (!Array.isArray(added) || added.length === 0) return;
+    const existingKeys = new Set(projects.map(p => projKey(p)));
+    let merged = false;
+    added.forEach(p => {
+      if (!existingKeys.has(projKey(p))) {
+        projects.push(p);
+        existingKeys.add(projKey(p));
+        merged = true;
+      }
+    });
+    if (merged) projects.sort((a, b) => a.seq - b.seq || a.name.localeCompare(b.name));
+  } catch(e) { console.warn('loadAddedFromLocal error', e); }
+}
+
+function saveAddedToLocal(p) {
+  try {
+    const raw = localStorage.getItem(LS_ADD_KEY);
+    const added = raw ? JSON.parse(raw) : [];
+    added.push(p);
+    localStorage.setItem(LS_ADD_KEY, JSON.stringify(added));
+  } catch(e) { console.warn('saveAddedToLocal error', e); }
+}
+
+// 异步写回源文件（后台执行，不阻塞界面）
+async function syncToServer() {
+  try {
+    const resp = await fetch('/api/write_projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(projects)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    // 写成功后清除 local 备份和编辑缓存
+    localStorage.removeItem(LS_ADD_KEY);
+    localStorage.removeItem(LS_KEY);
+    return true;
+  } catch(e) {
+    console.warn('syncToServer error', e);
+    return false;
+  }
+}
+
+// 手动存档：将当前所有编辑写回源文件
+async function archiveToServer(btn) {
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ 存档中...'; }
+  try {
+    const resp = await fetch('/api/write_projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(projects)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const result = await resp.json();
+    if (result.ok) {
+      // 存档成功，清除 localStorage 编辑缓存
+      localStorage.removeItem(LS_KEY);
+      localStorage.removeItem(LS_ADD_KEY);
+      if (btn) { btn.disabled = false; btn.textContent = '💾 存档'; }
+      alert('✅ 存档成功！' + result.count + '个项目已同步到源文件。');
+    } else {
+      throw new Error(result.error || '未知错误');
+    }
+  } catch(e) {
+    console.error('archiveToServer error', e);
+    if (btn) { btn.disabled = false; btn.textContent = '💾 存档'; }
+    alert('❌ 存档失败：' + e.message + '\n请确保通过 http://localhost:8899 访问（非file://）。');
+  }
+}
 
 function loadEdits() {
   try {
@@ -1552,6 +1784,7 @@ function loadEdits() {
   } catch(e) { console.warn('loadEdits error', e); }
 }
 
+// 将 projects 完整写回 HTML 源文件，确保刷新不丢失
 function saveEdit(p, field, value) {
   try {
     const raw = localStorage.getItem(LS_KEY);
@@ -1601,6 +1834,40 @@ function getFullCycleUnsold(p) {
   const sold = (s == null ? 0 : s);
   return Math.max(0, v - repaid - sold);
 }
+// ===== 货值口径统一汇总（用于状态图穿透）=====
+// 口径：总货值(value) = 总可售(本清单货值即商品住宅可售货值)
+//       已取证货值(saleable_value) + 未取证货值(value-saleable_value) = 总货值
+//       已取证货值 = 已售货值(sold_value) + 取证未售(saleable_value-sold_value)
+//       安置房总货值(resettlement_value) / 已回款(resettlement_repaid) 单列
+function drillCaliberTiles(rows) {
+  const saleable    = rows.reduce((a,p)=>a+(p.saleable_value||0),0);                                 // 已取证货值
+  const sold        = rows.reduce((a,p)=>a+(p.sold_value||0),0);                                      // 已售
+  const certUnsold  = rows.reduce((a,p)=>a+Math.max(0,(p.saleable_value||0)-(p.sold_value||0)),0);    // 取证未售
+  const resVal      = rows.reduce((a,p)=>a+(p.resettlement_value||0),0);                              // 安置房总货值
+  const resRepaid   = rows.reduce((a,p)=>a+(p.resettlement_repaid||0),0);                             // 安置房已回款
+  const resUnsold   = rows.reduce((a,p)=>a+(p.resettlement_unsold||0),0);                            // 安置房未回款
+  // 口径瀑布（商品住宅可售口径，安置房按回款项扣减）：
+  //   总可售 = 货值 - 安置房已回款 - 安置房未回款
+  //   已取证 = 已售 + 取证未售 ; 总可售 = 已取证 + 未取证
+  const totalVal      = rows.reduce((a,p)=>a+(p.value||0),0);                                         // 总货值
+  const totalSellable = totalVal - resRepaid - resUnsold;                                             // 总可售 = 货值 - 安置房已回款 - 安置房未回款
+  const uncertified   = totalSellable - saleable;                                                     // 未取证 = 总可售 - 已取证
+  const t=(l,v,u,c)=>`<div class="drill-kpi"${c?` style="background:${c}"`:''}><div class="drill-kpi-label">${l}</div><div class="drill-kpi-val">${(v/10000).toFixed(1)}<span>${u}</span></div></div>`;
+  return `
+    <div class="drill-kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="drill-kpi" style="background:#f0fdf4"><div class="drill-kpi-label">项目数量</div><div class="drill-kpi-val">${rows.length}<span>个</span></div></div>
+      ${t('总货值', totalVal, '亿')}
+      ${t('安置房已回款', resRepaid, '亿')}
+      ${t('安置房未回款', resUnsold, '亿')}
+      ${t('总可售', totalSellable, '亿', '#eff6ff')}
+      ${t('已取证货值', saleable, '亿')}
+      ${t('未取证货值', uncertified, '亿')}
+      ${t('已售货值', sold, '亿')}
+      ${t('取证未售', certUnsold, '亿', '#eff6ff')}
+      ${t('安置房总货值', resVal, '亿')}
+    </div>`;
+}
+
 // 货地比 = 货值 / 地价
 function getRatio(p) {
   if (!p.value || !p.land_price) return null;
@@ -1615,6 +1882,12 @@ function n(v, digits=0) {
   if (digits) return num.toFixed(digits);
   return Math.round(num).toLocaleString('zh-CN');
 }
+// 可售比格式化：整数原样显示，小数保留2位
+function srFmt(v) {
+  const num = Number(v);
+  if (isNaN(num)) return '—';
+  return Number.isInteger(num) ? String(num) : num.toFixed(2);
+}
 function typeBadge(t) {
   if (!t) return '<span style="color:#9ca3af;font-size:11px">—</span>';
   const m = {'地产开发':'type-dev','公建项目':'type-public','公建+市场化运营':'type-mixed','长租公寓':'type-rental'};
@@ -1622,7 +1895,7 @@ function typeBadge(t) {
 }
 function statusBadge(s) {
   if (!s) return '<span class="badge badge-other">—</span>';
-  const m = {'在建':'badge-built','已交付':'badge-done','已售罄':'badge-sold','未交地':'badge-notgiven','公建':'badge-public','暂缓开工':'badge-pause','待开工':'badge-pending','已退地':'badge-returned'};
+  const m = {'在建':'badge-built','在建未售':'badge-built','在建已售':'badge-building-sold','已交付':'badge-done','已竣备':'badge-done','已售罄':'badge-sold','未交地':'badge-notgiven','公建':'badge-public','暂缓开工':'badge-pause','待开工':'badge-pending','已退地':'badge-returned'};
   return `<span class="badge ${m[s]||'badge-other'}">${s}</span>`;
 }
 
@@ -1670,11 +1943,11 @@ function refreshKPI() {
   document.getElementById('kpiValue').innerHTML = `${(t.value/10000).toFixed(1)}<span>亿元</span>`;
   document.getElementById('kpiBuild').innerHTML = `${(t.build_area/10000).toFixed(1)}<span>万㎡</span>`;
   document.getElementById('kpiInvest').innerHTML = `${(t.investment/10000).toFixed(1)}<span>亿元</span>`;
-  // 在建/已交付：按唯一seq计（同seq多行只算一次）
-  const buildingSeqs = new Set(projects.filter(p=>p.status==='在建').map(p=>p.seq));
-  const doneSeqs = new Set(projects.filter(p=>p.status==='已交付'||p.status==='已售罄').map(p=>p.seq));
+  // 在建（在建未售+在建已售）：按唯一seq计（同seq多行只算一次）
+  const buildingSeqs = new Set(projects.filter(p=>p.status==='在建'||p.status==='在建未售'||p.status==='在建已售').map(p=>p.seq));
+  const doneSeqs = new Set(projects.filter(p=>p.status==='已交付').map(p=>p.seq));
   document.getElementById('kpiBuilding').innerHTML = `${buildingSeqs.size}<span>个</span>`;
-  document.getElementById('kpiDoneText').textContent = `已交付/已售罄 ${doneSeqs.size} 个`;
+  document.getElementById('kpiDoneText').textContent = `已交付 ${doneSeqs.size} 个`;
   document.getElementById('totalCount').textContent = uniqueSeqCount;
 }
 
@@ -1689,7 +1962,7 @@ function initCharts() {
   chartV.on('click', params => openDrilldown('area', params.name));
   // 图2 状态图 - 按状态穿透
   chartS.on('click', params => openDrilldown('status', params.name === '未标注' ? '' : params.name));
-  // 图3 建面图 - 按区域+在建穿透
+  // 图3 建面图 - 按区域+在建（在建未售+在建已售）穿透
   chartA.on('click', params => openDrilldown('area+status', params.name + '+在建'));
 
   refreshCharts();
@@ -1733,9 +2006,10 @@ function refreshCharts() {
   const sm = {};
   projects.forEach(p => { const s = p.status||'未标注'; sm[s] = (sm[s]||0)+1; });
   const scl = {
-    '在建':'#3B82F6', '已交付':'#10B981', '已售罄':'#06D6A0',
-    '未交地':'#F43F5E', '暂缓开工':'#F59E0B', '待开工':'#8B5CF6',
-    '已退地':'#94A3B8', '已开放':'#6366F1', '未标注':'#CBD5E1'
+    '在建':'#2563EB', '在建未售':'#2563EB', '在建已售':'#0891B2', '已交付':'#16A34A',
+    '已竣备':'#F59E0B', '已售罄':'#14B8A6',
+    '未交地':'#F43F5E', '暂缓开工':'#DC2626', '待开工':'#8B5CF6',
+    '已退地':'#6B7280', '已开放':'#DB2777', '未标注':'#CBD5E1'
   };
   const totalProj = new Set(projects.map(p=>p.seq)).size;
   chartS.setOption({
@@ -1757,8 +2031,8 @@ function refreshCharts() {
     }]
   }, true);
 
-  // ── 图3：在建项目建设规模 ──
-  const buildingProjs = projects.filter(p => p.status === '在建');
+  // ── 图3：在建项目建设规模（在建未售+在建已售）──
+  const buildingProjs = projects.filter(p => p.status === '在建' || p.status === '在建未售' || p.status === '在建已售');
   const totalBuildArea = buildingProjs.reduce((a,p) => a + (p.build_area||0), 0);
   chartA.setOption({
     tooltip: { trigger:'axis', formatter:p=>`${p[0].name}（在建）<br/>建面：${(p[0].value/10000).toFixed(1)}万㎡<br/><span style="font-size:11px;color:#1d4ed8;font-weight:600">▶ 点击查看在建项目</span>` },
@@ -1767,7 +2041,7 @@ function refreshCharts() {
     yAxis: { type:'value', axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万', fontSize:11} },
     series: [{ type:'bar', barWidth:'52%',
       data: areas.map((a,i) => {
-        const buildingRows = projects.filter(p => p.area === a && p.status === '在建');
+        const buildingRows = projects.filter(p => p.area === a && (p.status === '在建' || p.status === '在建未售' || p.status === '在建已售'));
         const buildArea = buildingRows.reduce((acc,p) => acc + (p.build_area||0), 0);
         const base = Object.values(AREA_COLORS)[i];
         return { value: buildArea, itemStyle:{
@@ -1788,6 +2062,40 @@ function refreshCharts() {
       ]
     }]
   }, true);
+}
+
+// ===== 列分组切换 =====
+function renderColToggleBar() {
+  const bar = document.getElementById('colToggleBar');
+  if (!bar) return;
+  let html = '<span class="ct-label">列显示：</span>';
+  COL_GROUP_DEFS.forEach(g => {
+    const active = colVisibility[g.key];
+    html += `<span class="col-toggle-btn ${active?'active':''}" onclick="toggleColGroup('${g.key}')" title="${g.defaultHidden?'默认折叠，点击展开':'点击收起'}">
+      <span class="dot"></span>${g.label}${active?' ✓':''}
+    </span>`;
+  });
+  bar.innerHTML = html;
+}
+
+function toggleColGroup(key) {
+  colVisibility[key] = !colVisibility[key];
+  // 更新所有表格中的分组列显示状态（通过 CSS class 控制）
+  const allTables = document.querySelectorAll('table.data-table');
+  allTables.forEach(t => {
+    // 表头分组标题
+    t.querySelectorAll('.col-group-head[data-group="'+key+'"]').forEach(el => {
+      el.classList.toggle('cg-hidden', !colVisibility[key]);
+      // 更新标题文字
+      const baseLabel = COL_GROUP_DEFS.find(g=>g.key===key).label;
+      el.textContent = baseLabel + (!colVisibility[key] ? ' 🔽' : '');
+    });
+    // 数据列
+    t.querySelectorAll('.cg-'+key).forEach(el => {
+      el.classList.toggle('cg-hidden', !colVisibility[key]);
+    });
+  });
+  renderColToggleBar();
 }
 
 // ===== RENDER TABLE =====
@@ -1821,38 +2129,41 @@ function renderTable() {
         </div>
       </div>
       <div class="table-wrapper" id="tbl-${area}">
-        <table>
+        <table class="data-table">
+          <colgroup>
+            <col class="cg-basic"><col class="cg-basic"><col class="cg-basic">
+            <col class="cg-time"><col class="cg-time">
+            <col class="cg-scale"><col class="cg-scale"><col class="cg-scale"><col class="cg-scale"><col class="cg-scale">
+            <col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance"><col class="cg-finance">
+            <col class="cg-detail"><col class="cg-detail"><col class="cg-detail">
+          </colgroup>
           <thead>
             <tr>
-              <th colspan="4">基本信息</th>
-              <th colspan="2">时间节点 ✎</th>
-              <th colspan="4">规模指标</th>
-              <th colspan="10">财务指标（万元）—可编辑</th>
-              <th colspan="3">项目详情</th>
+              ${COL_GROUP_DEFS.map(g => `<th colspan="${g.span}" class="col-group-head ${colVisibility[g.key]?'':'cg-hidden'}" data-group="${g.key}">${g.label}${g.defaultHidden?' 🔽':''}</th>`).join('')}
             </tr>
             <tr>
-              <th style="width:34px">序号</th>
-              <th style="min-width:160px;text-align:left">项目名称</th>
-              <th style="min-width:100px">类型 ✎</th>
-              <th style="min-width:80px">状态 ✎</th>
-              <th>获取时间 ✎</th>
-              <th>竣工时间 ✎</th>
-              <th>地价(万)</th>
-              <th>楼面价(元/㎡)</th>
-              <th>占地(㎡)</th>
-              <th>建面(㎡)</th>
-              <th style="min-width:100px;background:#fef3c7">总投资额 ✎</th>
-              <th>货值(万) ✎</th>
-              <th style="min-width:100px;background:#fffbeb">已取证货值 ✎</th>
-              <th>货地比</th>
-              <th>已售货值 ✎</th>
-              <th>已取证未售货值</th>
-              <th style="background:#e0f2fe">安置房已回款</th>
-              <th style="background:#e0f2fe">安置房未回款</th>
-              <th style="background:#e0f2fe">全周期未售货值</th>
-              <th style="min-width:160px;background:#f0fdf4">项目位置</th>
-              <th style="min-width:120px;background:#f0fdf4">拿地主体</th>
-              <th style="min-width:100px;background:#f0fdf4">主力面积段</th>
+              <th style="width:34px" class="cg-basic">序号</th>
+              <th style="min-width:160px;text-align:left" class="cg-basic">项目名称</th>
+              <th style="min-width:80px" class="cg-basic">状态 ✎</th>
+              <th class="cg-time">获取时间 ✎</th>
+              <th class="cg-time">竣工时间 ✎</th>
+              <th class="cg-scale">地价(万)</th>
+              <th class="cg-scale">楼面价(元/㎡)</th>
+              <th class="cg-scale">占地(㎡)</th>
+              <th class="cg-scale">建面(㎡)</th>
+              <th class="cg-scale">可售比 ✎</th>
+              <th style="min-width:100px;background:#fef3c7" class="cg-finance">总投资额 ✎</th>
+              <th class="cg-finance">货值(万) ✎</th>
+              <th style="min-width:100px;background:#fffbeb" class="cg-finance">已取证货值 ✎</th>
+              <th class="cg-finance">货地比</th>
+              <th class="cg-finance">已售货值 ✎</th>
+              <th class="cg-finance">已取证未售货值</th>
+              <th style="background:#e0f2fe" class="cg-finance">安置房已回款</th>
+              <th style="background:#e0f2fe" class="cg-finance">安置房未回款</th>
+              <th style="background:#e0f2fe" class="cg-finance">全周期未售货值</th>
+              <th style="min-width:160px;background:#f0fdf4" class="cg-detail">项目位置</th>
+              <th style="min-width:120px;background:#f0fdf4" class="cg-detail">拿地主体</th>
+              <th style="min-width:100px;background:#f0fdf4" class="cg-detail">主力面积段</th>
             </tr>
           </thead>
           <tbody>`;
@@ -1881,61 +2192,60 @@ function renderTable() {
 
       html += `<tr class="data-row" data-seq="${p.seq}" data-idx="${idx}"${groupStyle}>
         ${seqCell}
-        <td class="td-name"><div class="project-name">${p.name||'—'}</div></td>
-        <td class="editable-cell" onclick="startEdit(event,'select','type',${idx})">
-          <div class="cell-display" id="disp-type-${idx}">${typeBadge(p.type)}</div>
-          <select class="cell-select" id="edit-type-${idx}" onchange="commitSelect('type',${idx})" onblur="cancelEdit('type',${idx})">
-            ${TYPE_LIST.map(t => `<option value="${t}" ${p.type===t?'selected':''}>${t||'—'}</option>`).join('')}
-          </select>
-        </td>
-        <td class="editable-cell" onclick="startEdit(event,'select','status',${idx})">
+        <td class="td-name cg-basic"><div class="project-name">${p.name||'—'}</div></td>
+        <td class="editable-cell cg-basic" onclick="startEdit(event,'select','status',${idx})">
           <div class="cell-display" id="disp-status-${idx}">${statusBadge(p.status)}</div>
           <select class="cell-select" id="edit-status-${idx}" onchange="commitSelect('status',${idx})" onblur="cancelEdit('status',${idx})">
             ${STATUS_LIST.map(s => `<option value="${s}" ${p.status===s?'selected':''}>${s||'—'}</option>`).join('')}
           </select>
         </td>
-        <td class="editable-cell" onclick="startEdit(event,'date','acquire_date',${idx})">
+        <td class="editable-cell cg-time" onclick="startEdit(event,'date','acquire_date',${idx})">
           <div class="cell-display" id="disp-acquire_date-${idx}">${p.acquire_date||'—'}</div>
           <input class="cell-input" id="edit-acquire_date-${idx}" type="date" value="${p.acquire_date||''}"
             onblur="commitDate('acquire_date',${idx})" onkeydown="dateKeydown(event,'acquire_date',${idx})" style="width:130px">
         </td>
-        <td class="editable-cell" onclick="startEdit(event,'date','completion_date',${idx})">
+        <td class="editable-cell cg-time" onclick="startEdit(event,'date','completion_date',${idx})">
           <div class="cell-display" id="disp-completion_date-${idx}">${p.completion_date||'—'}</div>
           <input class="cell-input" id="edit-completion_date-${idx}" type="date" value="${p.completion_date||''}"
             onblur="commitDate('completion_date',${idx})" onkeydown="dateKeydown(event,'completion_date',${idx})" style="width:130px">
         </td>
-        <td class="num">${n(p.land_price)}</td>
-        <td class="num">${n(p.floor_price)}</td>
-        <td class="num">${n(p.land_area)}</td>
-        <td class="num">${n(p.build_area)}</td>
-        <td class="editable-cell" style="background:#fef9e7" onclick="startEdit(event,'input','investment',${idx})">
+        <td class="num cg-scale">${n(p.land_price)}</td>
+        <td class="num cg-scale">${n(p.floor_price)}</td>
+        <td class="num cg-scale">${n(p.land_area)}</td>
+        <td class="num cg-scale">${n(p.build_area)}</td>
+        <td class="editable-cell cg-scale" onclick="startEdit(event,'input','saleable_ratio',${idx})">
+          <div class="cell-display" id="disp-saleable_ratio-${idx}">${p.saleable_ratio!=null?srFmt(p.saleable_ratio):'<span style="color:#d1d5db;font-size:11px">点击录入</span>'}</div>
+          <input class="cell-input" id="edit-saleable_ratio-${idx}" type="number" step="0.01" value="${p.saleable_ratio!=null?p.saleable_ratio:''}"
+            onblur="commitInput('saleable_ratio',${idx})" onkeydown="inputKeydown(event,'saleable_ratio',${idx})" placeholder="如0.75">
+        </td>
+        <td class="editable-cell cg-finance" style="background:#fef9e7" onclick="startEdit(event,'input','investment',${idx})">
           <div class="cell-display" id="disp-investment-${idx}" style="color:#92400e;font-weight:600">${p.investment!=null?n(p.investment):'<span style="color:#d1d5db;font-size:11px">点击录入</span>'}</div>
           <input class="cell-input" id="edit-investment-${idx}" type="number" value="${p.investment!=null?p.investment:''}"
             onblur="commitInput('investment',${idx})" onkeydown="inputKeydown(event,'investment',${idx})" placeholder="备案表投资额">
         </td>
-        <td class="editable-cell" onclick="startEdit(event,'input','value',${idx})">
+        <td class="editable-cell cg-finance" onclick="startEdit(event,'input','value',${idx})">
           <div class="cell-display num-h" id="disp-value-${idx}">${n(p.value)}</div>
           <input class="cell-input" id="edit-value-${idx}" type="number" value="${p.value||''}"
             onblur="commitInput('value',${idx})" onkeydown="inputKeydown(event,'value',${idx})">
         </td>
-        <td class="editable-cell" style="background:#fffbeb" onclick="startEdit(event,'input','saleable_value',${idx})">
+        <td class="editable-cell cg-finance" style="background:#fffbeb" onclick="startEdit(event,'input','saleable_value',${idx})">
           <div class="cell-display" id="disp-saleable_value-${idx}" style="color:#d97706;font-weight:600">${p.saleable_value!=null?n(p.saleable_value):'<span style="color:#d1d5db;font-size:11px">点击录入</span>'}</div>
           <input class="cell-input" id="edit-saleable_value-${idx}" type="number" value="${p.saleable_value!=null?p.saleable_value:''}"
             onblur="commitInput('saleable_value',${idx})" onkeydown="inputKeydown(event,'saleable_value',${idx})" placeholder="输入已取证货值">
         </td>
-        <td class="num ${ratioClass}" id="ratio-${idx}">${ratioStr}</td>
-        <td class="editable-cell" onclick="startEdit(event,'input','sold_value',${idx})">
+        <td class="num cg-finance ${ratioClass}" id="ratio-${idx}">${ratioStr}</td>
+        <td class="editable-cell cg-finance" onclick="startEdit(event,'input','sold_value',${idx})">
           <div class="cell-display" id="disp-sold_value-${idx}">${n(p.sold_value)}</div>
           <input class="cell-input" id="edit-sold_value-${idx}" type="number" value="${p.sold_value!=null?p.sold_value:''}"
             onblur="commitInput('sold_value',${idx})" onkeydown="inputKeydown(event,'sold_value',${idx})">
         </td>
-        <td class="num ${unsold!=null && unsold>100000?'num-h':''}" id="unsold-${idx}">${n(unsold)}</td>
-        <td class="num" style="background:#e0f2fe">${p.resettlement_repaid!=null && p.resettlement_repaid>0?n(p.resettlement_repaid):'—'}</td>
-        <td class="num" style="background:#e0f2fe">${p.resettlement_unsold!=null?n(p.resettlement_unsold):'—'}</td>
-        <td class="num ${fullUnsold!=null && fullUnsold>100000?'num-h':''}" style="background:#eff6ff">${n(fullUnsold)}</td>
-        <td style="background:#f0fdf4;font-size:12px;color:#374151">${p.location||'—'}</td>
-        <td style="background:#f0fdf4;font-size:12px;color:#374151;white-space:nowrap">${p.entity||'—'}</td>
-        <td style="background:#f0fdf4;font-size:12px;color:#374151;white-space:nowrap">${p.area_segment||'—'}</td>
+        <td class="num cg-finance ${unsold!=null && unsold>100000?'num-h':''}" id="unsold-${idx}">${n(unsold)}</td>
+        <td class="num cg-finance" style="background:#e0f2fe">${p.resettlement_repaid!=null && p.resettlement_repaid>0?n(p.resettlement_repaid):'—'}</td>
+        <td class="num cg-finance" style="background:#e0f2fe">${p.resettlement_unsold!=null?n(p.resettlement_unsold):'—'}</td>
+        <td class="num cg-finance ${fullUnsold!=null && fullUnsold>100000?'num-h':''}" style="background:#eff6ff">${n(fullUnsold)}</td>
+        <td class="cg-detail" style="background:#f0fdf4;font-size:12px;color:#374151">${p.location||'—'}</td>
+        <td class="cg-detail" style="background:#f0fdf4;font-size:12px;color:#374151;white-space:nowrap">${p.entity||'—'}</td>
+        <td class="cg-detail" style="background:#f0fdf4;font-size:12px;color:#374151;white-space:nowrap">${p.area_segment||'—'}</td>
       </tr>`;
     });
 
@@ -1945,26 +2255,32 @@ function renderTable() {
     const resettleRepaidSum = rows.reduce((a,p) => a + (p.resettlement_repaid||0), 0);
     const resettleUnsoldSum = rows.reduce((a,p) => a + (p.resettlement_unsold||0), 0);
     const fullUnsoldSum = rows.reduce((a,p) => a + (getFullCycleUnsold(p)||0), 0);
+    // 可售比按建面加权平均值（仅统计已录入的项目）
+    const srWeight = rows.reduce((a,p) => a + ((p.saleable_ratio!=null ? p.saleable_ratio : 0) * (p.build_area||0)), 0);
+    const srBase = rows.reduce((a,p) => a + (p.saleable_ratio!=null ? (p.build_area||0) : 0), 0);
+    const saleableRatioAvg = srBase > 0 ? srWeight/srBase : null;
+    const visBasic = colVisibility.basic ? 3 : 0;
     html += `<tr class="summary-row" onclick="openDrilldown('${area}')" title="点击查看${area}明细">
-      <td colspan="2">📊 ${area}小计（点击查看明细）</td>
-      <td colspan="2"></td>
-      <td colspan="2"></td>
-      <td>${n(sum.land_price)}</td>
-      <td>—</td>
-      <td>${sum.land_area ? Math.round(sum.land_area).toLocaleString() : '—'}</td>
-      <td>${n(sum.build_area)}</td>
-      <td style="background:#fef9e7;color:#92400e">${sum.investment?n(sum.investment):'—'}</td>
-      <td class="num-h">${n(sum.value)}</td>
-      <td style="background:#fffbeb;color:#d97706">${saleableSum?n(saleableSum):'—'}</td>
-      <td class="${sumRatio!=='—'?(parseFloat(sumRatio)>=2?'num-g':parseFloat(sumRatio)<1.5?'num-d':'num-w'):''}">${sumRatio}</td>
-      <td>${n(sum.sold_value)}</td>
-      <td>${n(saleableSum - sum.sold_value)}</td>
-      <td style="background:#e0f2fe">${resettleRepaidSum>0?n(resettleRepaidSum):'—'}</td>
-      <td style="background:#e0f2fe">${resettleUnsoldSum>0?n(resettleUnsoldSum):'—'}</td>
-      <td style="background:#eff6ff">${fullUnsoldSum?n(fullUnsoldSum):'—'}</td>
-      <td style="background:#f0fdf4"></td>
-      <td style="background:#f0fdf4"></td>
-      <td style="background:#f0fdf4"></td>
+      <td colspan="${visBasic}" class="cg-basic">📊 ${area}小计（点击查看明细）</td>
+      ${colVisibility.time ? '<td class="cg-time"></td><td class="cg-time"></td>' : ''}
+      ${colVisibility.scale ? `
+        <td class="cg-scale">${n(sum.land_price)}</td>
+        <td class="cg-scale">—</td>
+        <td class="cg-scale">${sum.land_area ? Math.round(sum.land_area).toLocaleString() : '—'}</td>
+        <td class="cg-scale">${n(sum.build_area)}</td>
+        <td class="cg-scale" style="font-weight:600;color:#0369a1">${saleableRatioAvg!=null?srFmt(saleableRatioAvg):'—'}</td>` : ''}
+      ${colVisibility.finance ? `
+        <td class="cg-finance" style="background:#fef9e7;color:#92400e">${sum.investment?n(sum.investment):'—'}</td>
+        <td class="cg-finance num-h">${n(sum.value)}</td>
+        <td class="cg-finance" style="background:#fffbeb;color:#d97706">${saleableSum?n(saleableSum):'—'}</td>
+        <td class="cg-finance ${sumRatio!=='—'?(parseFloat(sumRatio)>=2?'num-g':parseFloat(sumRatio)<1.5?'num-d':'num-w'):''}">${sumRatio}</td>
+        <td class="cg-finance">${n(sum.sold_value)}</td>
+        <td class="cg-finance">${n(saleableSum - sum.sold_value)}</td>
+        <td class="cg-finance" style="background:#e0f2fe">${resettleRepaidSum>0?n(resettleRepaidSum):'—'}</td>
+        <td class="cg-finance" style="background:#e0f2fe">${resettleUnsoldSum>0?n(resettleUnsoldSum):'—'}</td>
+        <td class="cg-finance" style="background:#eff6ff">${fullUnsoldSum?n(fullUnsoldSum):'—'}</td>
+        <td class="cg-finance"></td>` : ''}
+      ${colVisibility.detail ? '<td class="cg-detail" style="background:#f0fdf4"></td><td class="cg-detail" style="background:#f0fdf4"></td><td class="cg-detail" style="background:#f0fdf4"></td>' : ''}
     </tr>`;
 
     html += `</tbody></table></div></div>`;
@@ -2000,6 +2316,16 @@ function renderTable() {
 
   section.innerHTML = html;
   document.getElementById('showCount').textContent = new Set(filtered.map(p=>p.seq)).size;
+  // 应用初始列隐藏状态（默认折叠的分组）
+  COL_GROUP_DEFS.forEach(g => {
+    if (!colVisibility[g.key]) {
+      document.querySelectorAll('table.data-table').forEach(t => {
+        t.querySelectorAll('.cg-'+g.key).forEach(el => el.classList.add('cg-hidden'));
+        t.querySelectorAll('.col-group-head[data-group="'+g.key+'"]').forEach(el => el.classList.add('cg-hidden'));
+      });
+    }
+  });
+  renderColToggleBar();
 }
 
 // ===== INLINE EDIT =====
@@ -2028,10 +2354,17 @@ function commitInput(field, idx) {
   const val = inp.value === '' ? null : Number(inp.value);
   projects[idx][field] = val;
   saveEdit(projects[idx], field, val);
+  // 联动：名单内项目编辑「已取证货值」时，全盘货值同步跟随
+  if (field === 'saleable_value' && VALUE_FOLLOWS_SALEABLE.includes(projects[idx].seq)) {
+    const off = VALUE_OFFSET[projects[idx].seq] || 0;
+    projects[idx].value = (val == null ? null : val + off);
+    saveEdit(projects[idx], 'value', projects[idx].value);
+  }
   // 重新渲染表格以更新当前行、小计行、合计行
   renderTable();
   refreshKPI();
   refreshCharts();
+  syncToServer(); // 自动存档到源文件
 }
 function commitDate(field, idx) {
   const inp = document.getElementById(`edit-${field}-${idx}`);
@@ -2044,6 +2377,7 @@ function commitDate(field, idx) {
   if (field === 'completion_date') buildComplDropdown();
   renderTable();
   refreshKPI();
+  syncToServer(); // 自动存档到源文件
 }
 function dateKeydown(e, field, idx) {
   if (e.key === 'Enter') commitDate(field, idx);
@@ -2069,6 +2403,7 @@ function commitSelect(field, idx) {
   renderTable();
   refreshKPI();
   refreshCharts();
+  syncToServer(); // 自动存档到源文件
 }
 function refreshUnsoldCell(idx) {
   const unsold = getUnsold(projects[idx]);
@@ -2272,14 +2607,14 @@ function openDrilldown(mode, val) {
     const buildArea = rows.reduce((a,p) => a + (p.build_area||0), 0);
     const invest    = rows.reduce((a,p) => a + (p.investment||0), 0);
     const ratio     = landPrice ? (totalVal / landPrice).toFixed(2) : '—';
-    const building  = rows.filter(p => p.status === '在建').length;
+    const building  = rows.filter(p => p.status === '在建' || p.status === '在建未售' || p.status === '在建已售').length;
 
     kpiHtml = `
       <div class="drill-kpi-grid" style="grid-template-columns:repeat(3,1fr)">
         <div class="drill-kpi"><div class="drill-kpi-label">总地价</div><div class="drill-kpi-val">${(landPrice/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">总货值</div><div class="drill-kpi-val">${(totalVal/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">货地比</div><div class="drill-kpi-val" style="color:#059669">${ratio}</div></div>
-        <div class="drill-kpi" style="background:#eff6ff"><div class="drill-kpi-label">未售货值</div><div class="drill-kpi-val">${(unsoldSum/10000).toFixed(1)}<span>亿</span></div></div>
+        <div class="drill-kpi" style="background:#eff6ff"><div class="drill-kpi-label">取证未售</div><div class="drill-kpi-val">${(unsoldSum/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">总建面</div><div class="drill-kpi-val">${(buildArea/10000).toFixed(1)}<span>万㎡</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">已售货值</div><div class="drill-kpi-val">${(soldVal/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">备案投资额</div><div class="drill-kpi-val">${(invest/10000).toFixed(1)}<span>亿</span></div></div>
@@ -2288,39 +2623,22 @@ function openDrilldown(mode, val) {
       </div>`;
 
   } else if (mode === 'status') {
-    // ── 图2 状态饼图点击：按状态聚合 ──
+    // ── 图2 状态饼图点击：按状态聚合，口径统一为「取证未售」瀑布 ──
     rows = projects.filter(p => (p.status||'') === (val||''));
     const statusLabel = val || '未标注';
     title = `${statusLabel} · 共 ${rows.length} 个项目`;
-
-    const unsoldSum = rows.reduce((a,p) => a + (getUnsold(p)||0), 0);
-    const totalVal  = rows.reduce((a,p) => a + (p.value||0), 0);
-    const soldVal   = rows.reduce((a,p) => a + (p.sold_value||0), 0);
-    const buildArea = rows.reduce((a,p) => a + (p.build_area||0), 0);
-    const invest    = rows.reduce((a,p) => a + (p.investment||0), 0);
-    const landPrice = rows.reduce((a,p) => a + (p.land_price||0), 0);
-
-    // 状态专属颜色
-    const statusColor = {'在建':'#3B82F6','已交付':'#10B981','已售罄':'#06D6A0','未交地':'#F43F5E','暂缓开工':'#F59E0B','待开工':'#8B5CF6','已退地':'#94A3B8','已开放':'#6366F1'}[val] || '#374151';
-
-    kpiHtml = `
-      <div class="drill-kpi-grid" style="grid-template-columns:repeat(3,1fr)">
-        <div class="drill-kpi" style="background:#eff6ff"><div class="drill-kpi-label">项目数量</div><div class="drill-kpi-val" style="color:${statusColor}">${rows.length}<span>个</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">总货值</div><div class="drill-kpi-val">${(totalVal/10000).toFixed(1)}<span>亿</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">未售货值</div><div class="drill-kpi-val" style="color:#1d4ed8">${(unsoldSum/10000).toFixed(1)}<span>亿</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">已售货值</div><div class="drill-kpi-val">${(soldVal/10000).toFixed(1)}<span>亿</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">总建面</div><div class="drill-kpi-val">${(buildArea/10000).toFixed(1)}<span>万㎡</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">备案投资额</div><div class="drill-kpi-val">${(invest/10000).toFixed(1)}<span>亿</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">总地价</div><div class="drill-kpi-val">${(landPrice/10000).toFixed(1)}<span>亿</span></div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">未售占比</div><div class="drill-kpi-val" style="color:#d97706">${totalVal ? (unsoldSum/totalVal*100).toFixed(0)+'%' : '—'}</div></div>
-        <div class="drill-kpi"><div class="drill-kpi-label">已售率</div><div class="drill-kpi-val" style="color:#059669">${totalVal ? (soldVal/totalVal*100).toFixed(0)+'%' : '—'}</div></div>
-      </div>`;
+    kpiHtml = drillCaliberTiles(rows);
 
   } else if (mode === 'area+status') {
-    // ── 图3 建面图点击：区域+在建双重筛选 ──
+    // ── 图3 建面图点击：区域+在建（在建未售+在建已售）双重筛选 ──
     const [area, status] = val.split('+');
-    rows = projects.filter(p => p.area === area && p.status === status);
-    title = `${area} · ${status}项目 · 共 ${rows.length} 个`;
+    if (status === '在建') {
+      rows = projects.filter(p => p.area === area && (p.status === '在建' || p.status === '在建未售' || p.status === '在建已售'));
+      title = `${area} · 在建项目（在建未售+在建已售） · 共 ${rows.length} 个`;
+    } else {
+      rows = projects.filter(p => p.area === area && p.status === status);
+      title = `${area} · ${status}项目 · 共 ${rows.length} 个`;
+    }
 
     const buildArea = rows.reduce((a,p) => a + (p.build_area||0), 0);
     const invest    = rows.reduce((a,p) => a + (p.investment||0), 0);
@@ -2337,7 +2655,7 @@ function openDrilldown(mode, val) {
         <div class="drill-kpi" style="background:#f0fdf4"><div class="drill-kpi-label">在建总建面</div><div class="drill-kpi-val" style="color:#059669">${(buildArea/10000).toFixed(1)}<span>万㎡</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">最晚竣工</div><div class="drill-kpi-val" style="font-size:14px">${lastCompletion}</div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">总货值</div><div class="drill-kpi-val">${(totalVal/10000).toFixed(1)}<span>亿</span></div></div>
-        <div class="drill-kpi" style="background:#eff6ff"><div class="drill-kpi-label">未售货值</div><div class="drill-kpi-val" style="color:#1d4ed8">${(unsoldSum/10000).toFixed(1)}<span>亿</span></div></div>
+        <div class="drill-kpi" style="background:#eff6ff"><div class="drill-kpi-label">取证未售</div><div class="drill-kpi-val" style="color:#1d4ed8">${(unsoldSum/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">已售货值</div><div class="drill-kpi-val">${(soldVal/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">备案投资额</div><div class="drill-kpi-val">${(invest/10000).toFixed(1)}<span>亿</span></div></div>
         <div class="drill-kpi"><div class="drill-kpi-label">总地价</div><div class="drill-kpi-val">${(landPrice/10000).toFixed(1)}<span>亿</span></div></div>
@@ -2388,7 +2706,7 @@ function calcUnsold() {
   const s = parseFloat(document.getElementById('f_sold_value').value)||0;
   document.getElementById('f_unsold_value').value = Math.max(0, v - s) || '';
 }
-function confirmAdd() {
+async function confirmAdd() {
   const name = document.getElementById('f_name').value.trim();
   if (!name) { alert('请填写项目名称'); return; }
   const area = document.getElementById('f_area').value;
@@ -2422,9 +2740,18 @@ function confirmAdd() {
     area_segment: document.getElementById('f_area_segment').value.trim() || null,
   };
   projects.push(newProj);
+  saveAddedToLocal(newProj);          // 先同步写入 localStorage，刷新必不丢
+  syncToServer();                      // 后台异步写回源文件，不阻塞界面
   closeModal('addModal');
   // reset form
   ['f_name','f_acquire','f_completion','f_sale_date','f_land_price','f_floor_price','f_land_area','f_far','f_build_area','f_investment','f_value','f_saleable_value','f_sold_value','f_unsold_value','f_location','f_entity','f_area_segment'].forEach(id => document.getElementById(id).value = '');
+  // 重置所有筛选条件，确保新增项目可见
+  msSelected = { area: new Set(), type: new Set(), status: new Set(), year: new Set(), compl: new Set() };
+  ['area','type','status','year','compl'].forEach(k => { syncMsCheckboxes(k); updateMsTrigger(k); });
+  document.getElementById('filterSearch').value = '';
+  currentFilter.search = '';
+  buildYearDropdown();
+  buildComplDropdown();
   renderTable();
   refreshKPI();
   refreshCharts();
@@ -2557,7 +2884,37 @@ function exportExcel() {
     if (changed) localStorage.setItem(LS_KEY, JSON.stringify(newEdits));
   } catch(e) { console.warn('migrateEdits error', e); }
 })();
+// 数据版本检查：源文件数据更新后自动清除过期的localStorage编辑缓存
+(function checkDataVersion() {
+  try {
+    const stored = localStorage.getItem(LS_VER_KEY);
+    if (stored !== DATA_VERSION) {
+      console.log('数据版本已更新，清除旧编辑缓存', stored, '->', DATA_VERSION);
+      localStorage.removeItem(LS_KEY);
+      localStorage.removeItem(LS_ADD_KEY);
+      localStorage.setItem(LS_VER_KEY, DATA_VERSION);
+    }
+  } catch(e) { console.warn('checkDataVersion error', e); }
+})();
 loadEdits();
+loadAddedFromLocal(); // 恢复本地新增项目（localStorage 备份）
+// 强制对齐联动：名单内项目「总货值」始终 = 已取证货值 + 偏移(VALUE_OFFSET)，
+// 覆盖任何旧缓存，确保每次加载口径一致（望岳公馆B = 已取证货值 + 1499）
+(function syncValueFollows() {
+  projects.forEach((p) => {
+    if (VALUE_FOLLOWS_SALEABLE.includes(p.seq)) {
+      const off = VALUE_OFFSET[p.seq] || 0;
+      const sv = p.saleable_value;
+      p.value = (sv == null ? null : sv + off);
+      saveEdit(p, 'value', p.value);
+    }
+  });
+})();
+// 顶部数据截止日：根据源文件 DATA_AS_OF 常量自动渲染
+(function renderDataAsOf() {
+  const el = document.getElementById('dataAsOf');
+  if (el && typeof DATA_AS_OF === 'string') el.textContent = DATA_AS_OF;
+})();
 buildYearDropdown();
 buildComplDropdown();
 refreshKPI();
