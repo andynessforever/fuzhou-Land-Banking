@@ -277,6 +277,7 @@ tr.data-row:hover td { background: #f0f7ff; }
       <div class="ms-item" onclick="toggleMsItem('area','晋安区')" data-page-node-id="zJaMGwmIwVsFGzDH6QetyM"><input type="checkbox" class="ms-area-cb" value="晋安区" data-page-node-id="VRlLhANKDJc9URDP1OteM2"> 晋安区</div>
       <div class="ms-item" onclick="toggleMsItem('area','台江区')" data-page-node-id="xHuMhgaZJ91O3QEEIuFCeZ"><input type="checkbox" class="ms-area-cb" value="台江区" data-page-node-id="H1BDkVPfHGlkwNpoSiILbi"> 台江区</div>
       <div class="ms-item" onclick="toggleMsItem('area','仓山区')" data-page-node-id="DeaC0slfnIgduDiumWS2sU"><input type="checkbox" class="ms-area-cb" value="仓山区" data-page-node-id="OQmNdN0adHIiSwuBeXQG4D"> 仓山区</div>
+      <div class="ms-item" onclick="toggleMsItem('area','长乐区')"><input type="checkbox" class="ms-area-cb" value="长乐区"> 长乐区</div>
     </div>
   </div>
   <label data-page-node-id="7X6vtGS4TQvbIZ4EXCjdFY">项目类型</label>
@@ -1660,12 +1661,45 @@ let projects = [
     "resettlement_repaid": null,
     "location": "仓山区螺城路西侧、福州连接线东侧（三江口C-15地块A）",
     "area_segment": "待定",
+  },
+  {
+    "seq": 38,
+    "area": "长乐区",
+    "name": "长乐航城地块（2026航拍-4号）",
+    "type": "地产开发",
+    "acquire_date": "2026-10-10",
+    "land_date": null,
+    "completion_date": null,
+    "sale_date": null,
+    "land_price": 19750,
+    "floor_price": 4077,
+    "land_area": 22018,
+    "far": 2.2,
+    "total_area": 48440,
+    "build_area": 48440,
+    "resettlement_units": null,
+    "resettlement_area": null,
+    "commercial_units": null,
+    "commercial_area": null,
+    "investment": null,
+    "value": null,
+    "status": "待开工",
+    "avg_price": null,
+    "saleable_value": null,
+    "sold_value": null,
+    "dev_loan": null,
+    "resettlement_sold": null,
+    "resettlement_value": null,
+    "resettlement_unsold": null,
+    "resettlement_repaid": null,
+    "location": "长乐区航城街道规划大同一路西北侧、规划远航路西南侧（宗地2026航拍-4号）",
+    "area_segment": "待定",
     "entity": "福州市园开安筑建设有限公司"
   }
 ];
 // __PROJECTS_DATA_END__
-const AREAS = ['鼓楼区','晋安区','台江区','仓山区'];
-const AREA_COLORS = {'鼓楼区':'#4F46E5','晋安区':'#0EA5E9','台江区':'#8B5CF6','仓山区':'#10B981'};
+const AREAS = ['鼓楼区','晋安区','台江区','仓山区','长乐区'];
+const AREA_COLORS = {'鼓楼区':'#4F46E5','晋安区':'#0EA5E9','台江区':'#8B5CF6','仓山区':'#10B981','长乐区':'#F59E0B'};
 const TYPE_LIST = ['','地产开发','公建项目','公建+市场化运营','长租公寓'];
 const STATUS_LIST = ['','待开工','在建未售','在建已售','已竣备','已交付','暂缓开工','已退地'];
 
@@ -1686,7 +1720,7 @@ COL_GROUP_DEFS.forEach(g => { colVisibility[g.key] = !g.defaultHidden; });
 const LS_KEY = 'asset_list_edits_v1';
 const LS_ADD_KEY = 'asset_list_added_v2'; // 新增项目本地备份
 const LS_VER_KEY = 'asset_list_data_version';
-const DATA_VERSION = '20260923c'; // 每次源文件数据更新时递增，自动清除过期缓存 // 每次源文件数据更新时递增，自动清除过期缓存
+const DATA_VERSION = '20261010a'; // 每次源文件数据更新时递增，自动清除过期缓存 // 每次源文件数据更新时递增，自动清除过期缓存
 const DATA_AS_OF = '2026-08-31'; // 数据截止日（同步来源：腾讯文档「库存盘点表（数据截至0831）」），每次同步后人工更新此常量 + DATA_VERSION
 // 可被用户编辑的字段（用 seq 作为 key 存储覆盖）
 const EDITABLE_FIELDS = ['status','type','acquire_date','completion_date','sale_date','investment','value','sold_value','saleable_value'];
