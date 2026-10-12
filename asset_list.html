@@ -1130,12 +1130,12 @@ let projects = [
     "commercial_units": null,
     "commercial_area": null,
     "investment": 206079,
-    "value": 12200,
+    "value": 12177.6,
     "status": "已交付",
     "avg_price": "",
     "sold_value": null,
     "dev_loan": null,
-    "resettlement_repaid": 121776,
+    "resettlement_repaid": 12177.6,
     "resettlement_unsold": 0,
     "location": "台江区江滨大道北侧，闽江五桥、六桥之间，滨江市民广场地块",
     "area_segment": "地下商业、车位（自持）",
@@ -1681,8 +1681,8 @@ let projects = [
     "resettlement_area": null,
     "commercial_units": null,
     "commercial_area": null,
-    "investment": null,
-    "value": null,
+    "investment": 63979,
+    "value": 64570,
     "status": "待开工",
     "avg_price": null,
     "saleable_value": null,
@@ -1720,7 +1720,7 @@ COL_GROUP_DEFS.forEach(g => { colVisibility[g.key] = !g.defaultHidden; });
 const LS_KEY = 'asset_list_edits_v1';
 const LS_ADD_KEY = 'asset_list_added_v2'; // 新增项目本地备份
 const LS_VER_KEY = 'asset_list_data_version';
-const DATA_VERSION = '20261010a'; // 每次源文件数据更新时递增，自动清除过期缓存 // 每次源文件数据更新时递增，自动清除过期缓存
+const DATA_VERSION = '20261012a'; // 每次源文件数据更新时递增，自动清除过期缓存 // 每次源文件数据更新时递增，自动清除过期缓存
 const DATA_AS_OF = '2026-08-31'; // 数据截止日（同步来源：腾讯文档「库存盘点表（数据截至0831）」），每次同步后人工更新此常量 + DATA_VERSION
 // 可被用户编辑的字段（用 seq 作为 key 存储覆盖）
 const EDITABLE_FIELDS = ['status','type','acquire_date','completion_date','sale_date','investment','value','sold_value','saleable_value'];
